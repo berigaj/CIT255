@@ -190,7 +190,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.WriteLine();
 
             sb.Clear();
-            sb.AppendFormat("Your first task will be to set up your account details.");
+            sb.AppendFormat("");
             ConsoleUtil.DisplayMessage(sb.ToString());
 
             DisplayContinuePrompt();
