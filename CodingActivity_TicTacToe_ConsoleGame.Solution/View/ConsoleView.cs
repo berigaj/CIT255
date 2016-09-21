@@ -313,13 +313,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             Console.SetCursorPosition(0, GAMEBOARD_VERTICAL_LOCATION);
 
-            Console.Write("\t\t\t        |---+---+---|\n");
+            Console.Write("\t\t\t        |---+---+---+---|\n");
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Console.Write("\t\t\t        | ");
 
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     if (_gameboard.PositionState[i, j] == Gameboard.PlayerPiece.None)
                     {
@@ -332,7 +332,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                 }
 
-                Console.Write("\n\t\t\t        |---+---+---|\n");
+                Console.Write("\n\t\t\t        |---+---+---+---|\n");
             }
 
         }
@@ -454,7 +454,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     //
                     else
                     {
-                        DisplayMessageBox(coordinateType + " numbers are limited to (1,2,3)");
+                        DisplayMessageBox(coordinateType + " numbers are limited to (1,2,3,4)");
                     }
                 }
                 //

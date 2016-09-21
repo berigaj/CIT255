@@ -174,7 +174,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             {
                 if (_positionState[row, 0] == playerPieceToCheck &&
                     _positionState[row, 1] == playerPieceToCheck &&
-                    _positionState[row, 2] == playerPieceToCheck)
+                    _positionState[row, 2] == playerPieceToCheck &&
+                    _positionState[row, 3] == playerPieceToCheck) 
                 {
                     return true;
                 }
@@ -183,11 +184,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             // Check columns for player win
             //
-            for (int column = 0; column < 3; column++)
+            for (int column = 0; column < 4; column++)
             {
                 if (_positionState[0, column] == playerPieceToCheck &&
                     _positionState[1, column] == playerPieceToCheck &&
-                    _positionState[2, column] == playerPieceToCheck)
+                    _positionState[2, column] == playerPieceToCheck &&
+                    _positionState[3, column] == playerPieceToCheck)
                 {
                     return true;
                 }
@@ -199,11 +201,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             if (
                 (_positionState[0, 0] == playerPieceToCheck &&
                 _positionState[1, 1] == playerPieceToCheck &&
-                _positionState[2, 2] == playerPieceToCheck)
+                _positionState[2, 2] == playerPieceToCheck &&
+                _positionState[3, 3] == playerPieceToCheck)
                 ||
                 (_positionState[0, 2] == playerPieceToCheck &&
                 _positionState[1, 1] == playerPieceToCheck &&
-                _positionState[2, 0] == playerPieceToCheck)
+                _positionState[2, 2] == playerPieceToCheck &&
+                _positionState[3, 0] == playerPieceToCheck)
                 )
             {
                 return true;
