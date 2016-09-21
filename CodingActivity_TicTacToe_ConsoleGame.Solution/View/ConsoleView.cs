@@ -119,6 +119,26 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         }
 
         /// <summary>
+        /// display the MainMenu prompt
+        /// </summary>
+        public void DisplayMainMenu()
+        {
+            Console.Clear();
+
+            Console.CursorVisible = false;
+
+            Console.WriteLine();
+
+            Console.Write("\t\t\t\t***Main Menu***\n");
+            ConsoleUtil.DisplayMessage("Enter the number of the menu option you want to continue");
+            ConsoleKeyInfo response = Console.ReadKey();
+
+            Console.WriteLine();
+
+            Console.CursorVisible = true;
+        }
+
+        /// <summary>
         /// display the session timed out screen
         /// </summary>
         public void DisplayTimedOutScreen()
@@ -202,7 +222,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
             else if(info.Key == ConsoleKey.Enter)
             {
-                DisplayContinuePrompt();
+                DisplayMainMenu();
             }
            
         }
