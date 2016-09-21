@@ -176,17 +176,16 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         {
             StringBuilder sb = new StringBuilder();
 
-            ConsoleUtil.HeaderText = "The Tic-tac-toe Game";
+            ConsoleUtil.HeaderText = "The Tic-Tac-Toe Game";
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage("Written by John Velis");
+            ConsoleUtil.DisplayMessage("Written by Jen Berigan and Alex Briggs");
             ConsoleUtil.DisplayMessage("Northwestern Michigan College");
             Console.WriteLine();
 
             sb.Clear();
             sb.AppendFormat("This application is designed to allow two players to play ");
-            sb.AppendFormat("a game of tic-tac-toe. The rules are the standard rules for the ");
-            sb.AppendFormat("game with each player taking a turn.");
+            sb.AppendFormat("a game of tic-tac-toe. Though there's a bit of a twist...we have a 4x4 gameboard");
             ConsoleUtil.DisplayMessage(sb.ToString());
             Console.WriteLine();
 
