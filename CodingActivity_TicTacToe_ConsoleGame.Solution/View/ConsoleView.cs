@@ -190,10 +190,20 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.WriteLine();
 
             sb.Clear();
-            sb.AppendFormat("");
+            sb.AppendFormat("Press Enter to Continue, Press Esc to Quit");
             ConsoleUtil.DisplayMessage(sb.ToString());
+            Console.WriteLine();
 
-            DisplayContinuePrompt();
+            ConsoleKeyInfo info = Console.ReadKey();
+            if (info.Key == ConsoleKey.Escape)
+            {
+                DisplayExitPrompt();
+            }
+            else if(info.Key == ConsoleKey.Enter)
+            {
+                DisplayContinuePrompt();
+            }
+           
         }
 
         /// <summary>
