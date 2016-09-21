@@ -181,6 +181,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             ConsoleUtil.DisplayMessage("Written by Jen Berigan and Alex Briggs");
             ConsoleUtil.DisplayMessage("Northwestern Michigan College");
+            ConsoleUtil.DisplayMessage("Version: Sprint 2");
             Console.WriteLine();
 
             sb.Clear();
@@ -190,10 +191,20 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.WriteLine();
 
             sb.Clear();
-            sb.AppendFormat("");
+            sb.AppendFormat("Press Enter to Continue, Press Esc to Quit");
             ConsoleUtil.DisplayMessage(sb.ToString());
+            Console.WriteLine();
 
-            DisplayContinuePrompt();
+            ConsoleKeyInfo info = Console.ReadKey();
+            if (info.Key == ConsoleKey.Escape)
+            {
+                DisplayExitPrompt();
+            }
+            else if(info.Key == ConsoleKey.Enter)
+            {
+                DisplayContinuePrompt();
+            }
+           
         }
 
         /// <summary>
