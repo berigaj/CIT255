@@ -181,6 +181,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             ConsoleUtil.DisplayMessage("Written by Jen Berigan and Alex Briggs");
             ConsoleUtil.DisplayMessage("Northwestern Michigan College");
+            ConsoleUtil.DisplayMessage("Version: Sprint 2");
             Console.WriteLine();
 
             sb.Clear();
