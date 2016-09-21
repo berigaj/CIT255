@@ -34,7 +34,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         #region FIELDS
 
-        private const int MAX_NUM_OF_ROWS_COLUMNS = 3;
+        private const int MAX_NUM_OF_ROWS_COLUMNS = 4;
 
         private PlayerPiece[,] _positionState;
 
