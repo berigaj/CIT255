@@ -81,7 +81,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.BackgroundColor = ConsoleConfig.bodyBackgroundColor;
             Console.ForegroundColor = ConsoleConfig.bodyBackgroundColor;
 
-            ConsoleUtil.WindowTitle = "The Tic-tac-toe Game";
+            ConsoleUtil.WindowTitle = "4 X 4 Tic-tac-toe Game";
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.CursorVisible = false;
 
             Console.WriteLine();
-            ConsoleUtil.DisplayMessage("Thank you for play the game. Press any key to Exit.");
+            ConsoleUtil.DisplayMessage("Thank you for playing the game. Press any key to Exit.");
 
             Console.ReadKey();
 
@@ -211,7 +211,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.HeaderText = "Position Choice Unavailable";
             ConsoleUtil.DisplayReset();
 
-            sb.Append(" It appears that you have chosen a position that is all ready");
+            sb.Append(" It appears that you have chosen a position that is already");
             sb.Append(" taken. Please try again.");
 
             DisplayMessageBox(sb.ToString());
@@ -588,7 +588,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     //
                     else
                     {
-                        DisplayMessageBox(coordinateType + " numbers are limited to (1,2,3,4)");
+                        DisplayMessageBox(coordinateType + "Your selection is out of range. Numbers are limited to (1,2,3,4)");
                     }
                 }
                 //
@@ -596,7 +596,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 //
                 else
                 {
-                    DisplayMessageBox(coordinateType + " numbers are limited to (1,2,3)");
+                    DisplayMessageBox(coordinateType + " Your selection is out of range. Numbers are limited to (1,2,3,4)");
                 }
 
                 //
