@@ -327,6 +327,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             DisplayGameboard();
             DisplayGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
+
         }
 
         /// <summary>
@@ -406,7 +407,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.HeaderText = "Continue or Quit";
             ConsoleUtil.DisplayReset();
 
-            return DisplayGetYesNoPrompt("Would you like to play another round?");
+            return DisplayGetYesNoPrompt("Would you like to play another round?", 0, 0, 0, 0);
         }
 
         /// <summary>
@@ -543,12 +544,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.Write("Enter " + coordinateType + " number: ");
         }
 
-        /// <summary>
-        /// Display a Yes or No prompt with a message
-        /// </summary>
-        /// <param name="promptMessage">prompt message</param>
-        /// <returns>bool where true = yes</returns>
-        private bool DisplayGetYesNoPrompt(string promptMessage)
+        private bool DisplayGetYesNoPrompt(string promptMessage, int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             bool yesNoChoice = false;
             bool validResponse = false;
@@ -570,6 +566,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 {
                     validResponse = true;
                     yesNoChoice = false;
+                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else
                 {
@@ -583,6 +580,11 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             return yesNoChoice;
         }
+        /// <summary>
+        /// Display a Yes or No prompt with a message
+        /// </summary>
+        /// <param name="promptMessage">prompt message</param>
+        /// <returns>bool where true = yes</returns>
 
         /// <summary>
         /// Get a player's position choice within the correct range of the array
