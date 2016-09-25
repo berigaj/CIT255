@@ -122,14 +122,14 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// </summary>
         public void UpdateGameboardState()
         {
-            if (ThreeInARow(PlayerPiece.X))
+            if (FourInARow(PlayerPiece.X))
             {
                 _currentRoundState = GameboardState.PlayerXWin;
             }
             //
             // A player O has won
             //
-            else if (ThreeInARow(PlayerPiece.O))
+            else if (FourInARow(PlayerPiece.O))
             {
                 _currentRoundState = GameboardState.PlayerOWin;
             }
@@ -147,9 +147,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             // All positions on board are filled and no winner
             //
-            for (int row = 0; row < 3; row++)
+            for (int row = 0; row < 4; row++)
             {
-                for (int column = 0; column < 3; column++)
+                for (int column = 0; column < 4; column++)
                 {
                     if (_positionState[row, column] == PlayerPiece.None)
                     {
@@ -161,16 +161,16 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         }
 
         /// <summary>
-        /// Check for any three in a row.
+        /// Check for any four in a row.
         /// </summary>
         /// <param name="playerPieceToCheck">Player's game piece to check</param>
         /// <returns>true if a player has won</returns>
-        private bool ThreeInARow(PlayerPiece playerPieceToCheck)
+        private bool FourInARow(PlayerPiece playerPieceToCheck)
         {
             //
             // Check rows for player win
             //
-            for (int row = 0; row < 3; row++)
+            for (int row = 0; row < 4; row++)
             {
                 if (_positionState[row, 0] == playerPieceToCheck &&
                     _positionState[row, 1] == playerPieceToCheck &&
@@ -204,9 +204,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 _positionState[2, 2] == playerPieceToCheck &&
                 _positionState[3, 3] == playerPieceToCheck)
                 ||
-                (_positionState[0, 2] == playerPieceToCheck &&
-                _positionState[1, 1] == playerPieceToCheck &&
-                _positionState[2, 2] == playerPieceToCheck &&
+                (_positionState[0, 3] == playerPieceToCheck &&
+                _positionState[1, 2] == playerPieceToCheck &&
+                _positionState[2, 1] == playerPieceToCheck &&
                 _positionState[3, 0] == playerPieceToCheck)
                 )
             {
