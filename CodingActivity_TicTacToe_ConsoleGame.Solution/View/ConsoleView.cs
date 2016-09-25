@@ -522,6 +522,14 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
 
                 Console.Write("\n\t\t\t        |---+---+---+---|\n");
+
+                    //Console.WriteLine("\t\t Press ESC to Exit");
+                    //ConsoleKeyInfo exitkey = Console.ReadKey();
+                    //if (exitkey.Key == ConsoleKey.Enter)
+                    //{
+                    //    DisplayClosingScreen();
+                    //}     
+
             }
 
         }
