@@ -20,10 +20,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         public const string headerText = "- set header text -";
 
         public const ConsoleColor headerBackgroundColor = ConsoleColor.White;
-        public const ConsoleColor headerForegroundColor = ConsoleColor.Red;
+        public const ConsoleColor headerForegroundColor = ConsoleColor.Blue;
 
-        public const ConsoleColor bodyBackgroundColor = ConsoleColor.Black;
-        public const ConsoleColor bodyForegroundColor = ConsoleColor.White;
+        public const ConsoleColor bodyBackgroundColor = ConsoleColor.White;
+        public const ConsoleColor bodyForegroundColor = ConsoleColor.Blue;
 
         public const string windowTitle = " - set window title - ";
 
