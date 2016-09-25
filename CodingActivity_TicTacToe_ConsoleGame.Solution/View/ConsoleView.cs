@@ -111,11 +111,19 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.CursorVisible = false;
 
             Console.WriteLine();
-            ConsoleUtil.DisplayMessage("Thank you for playing the game. Press any key to Exit.");
+            Console.Write("\t Thank you for playing the game. Press any key to Exit.");
 
             Console.ReadKey();
 
             System.Environment.Exit(1);
+        }
+
+        /// <summary>
+        /// display the save game screen
+        /// </summary>
+        public void DisplaySaveGameScreen()
+        {
+
         }
 
         /// <summary>
@@ -136,6 +144,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.Write("\t\t\t     D. View Historic Game Stats\n");
             Console.Write("\t\t\t     E. Save Game Results\n");
             Console.Write("\t\t\t     F. Quit\n");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.Write("\t\t\t Enter a letter to go to that screen");
             ConsoleKeyInfo response = Console.ReadKey();
 
             Console.WriteLine();
@@ -157,15 +168,15 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
             else if (response.Key == ConsoleKey.D)
             {
-
+                DisplayHistoricGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
             else if (response.Key == ConsoleKey.E)
             {
-
+                DisplaySaveGameScreen();
             }
             else if (response.Key == ConsoleKey.F)
             {
-                DisplayClosingScreen();
+                DisplayExitPrompt();
             }
 
         }
@@ -339,7 +350,50 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.DisplayMessage("Rounds for Player O: " + playerOWins + " - " + String.Format("{0:P2}", playerOPercentageWins));
             ConsoleUtil.DisplayMessage("Cat's Games: " + catsGames + " - " + String.Format("{0:P2}", percentageOfCatsGames));
 
-            DisplayContinuePrompt();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.Write("\t Press Enter to go back to Main Menu");
+            ConsoleKeyInfo response = Console.ReadKey();
+
+            if (response.Key == ConsoleKey.Enter)
+            {
+                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+            }
+
+
+
+        }
+
+        /// <summary>
+        /// displays the historic game status
+        /// <param name="roundsPlayed"></param>
+        /// <param name="playerXWins"></param>
+        /// <param name="playerOWins"></param>
+        /// <param name="catsGames"></param>
+        /// </summary>
+        public void DisplayHistoricGameStatus(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        {
+            ConsoleUtil.HeaderText = "Historic Game Status";
+            ConsoleUtil.DisplayReset();
+
+            double playerXPercentageWins = (double)playerXWins / roundsPlayed;
+            double playerOPercentageWins = (double)playerOWins / roundsPlayed;
+            double percentageOfCatsGames = (double)catsGames / roundsPlayed;
+
+            ConsoleUtil.DisplayMessage("Rounds Played: " + roundsPlayed);
+            ConsoleUtil.DisplayMessage("Rounds for Player X: " + playerXWins + " - " + String.Format("{0:P2}", playerXPercentageWins));
+            ConsoleUtil.DisplayMessage("Rounds for Player O: " + playerOWins + " - " + String.Format("{0:P2}", playerOPercentageWins));
+            ConsoleUtil.DisplayMessage("Cat's Games: " + catsGames + " - " + String.Format("{0:P2}", percentageOfCatsGames));
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.Write("\t Press Enter to go back to Main Menu");
+            ConsoleKeyInfo response = Console.ReadKey();
+
+            if (response.Key == ConsoleKey.Enter)
+            {
+                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+            }
 
 
         }
