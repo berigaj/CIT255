@@ -492,6 +492,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.WriteLine(Environment.NewLine + leftMargin + topBottom);
 
             Console.WriteLine(ConsoleUtil.Center("Press ESC key at anytime to exit."));
+
         }
 
         /// <summary>
@@ -646,7 +647,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     //
                     else
                     {
-                        DisplayMessageBox(coordinateType + "Your selection is out of range. Numbers are limited to (1,2,3,4)");
+                        DisplayMessageBox(coordinateType + "Your selection is out of range. Choices are limited to (1,2,3, or 4)");
                     }
                 }
                 //
@@ -654,9 +655,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 //
                 else
                 {
-                    DisplayMessageBox(coordinateType + " Your selection is out of range. Numbers are limited to (1,2,3,4)");
+                    DisplayMessageBox(coordinateType + " Your selection is not a valid number. Choices are limited to (1,2,3, or 4)");
                 }
-
                 //
                 // Increment the number of player attempts
                 //
