@@ -9,11 +9,15 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 {
     class Program
     {
+        private static int roundsPlayed;
+        private static int playerXWins;
+        private static int playerOWins;
+        private static int catsGames;
 
         static void Main(string[] args)
         {
             
-            GameController gameController = new GameController();
+            GameController gameController = new GameController(roundsPlayed, playerXWins, playerOWins, catsGames);
            
         }
     }

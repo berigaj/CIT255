@@ -41,10 +41,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         #region CONSTRUCTORS
 
-        public GameController()
+        public GameController(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             InitializeGame();
-            PlayGame();
+            PlayGame(roundsPlayed, playerXWins, playerOWins, catsGames);
         }
         
         #endregion
@@ -76,9 +76,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// Game Loop
         /// </summary>
-        public void PlayGame()
+        public void PlayGame(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
-            _gameView.DisplayWelcomeScreen();
+            _gameView.DisplayWelcomeScreen(roundsPlayed, playerXWins, playerOWins, catsGames);
 
             while (_playingGame)
             {
@@ -90,7 +90,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     //
                     // Perform the task associated with the current game and round state
                     //
-                    ManageGameStateTasks();
+                    ManageGameStateTasks(roundsPlayed, playerXWins, playerOWins, catsGames);
 
                     //
                     // Evaluate and update the current game board state
@@ -134,12 +134,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// manage each new task based on the current game state
         /// </summary>
-        private void ManageGameStateTasks()
+        private void ManageGameStateTasks(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             switch (_gameView.CurrentViewState)
             {
                 case ConsoleView.ViewState.Active:
-                    _gameView.DisplayGameArea();
+                    _gameView.DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
 
                     switch (_gameboard.CurrentRoundState)
                     {

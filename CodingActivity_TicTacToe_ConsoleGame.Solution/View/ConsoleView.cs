@@ -121,7 +121,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// display the MainMenu prompt
         /// </summary>
-        public void DisplayMainMenu()
+        public void DisplayMainMenu(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             Console.Clear();
             
@@ -145,15 +145,15 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             
             if (response.Key == ConsoleKey.A)
             {
-                
+                DisplayGameboard();
             }
             else if (response.Key == ConsoleKey.B)
             {
-                DisplayRulesScreen();
+                DisplayRulesScreen(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
             else if (response.Key == ConsoleKey.C)
             {
-
+                DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);   
             }
             else if (response.Key == ConsoleKey.D)
             {
@@ -222,7 +222,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// display the welcome screen
         /// </summary>
-        public void DisplayWelcomeScreen()
+        public void DisplayWelcomeScreen(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -252,7 +252,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
             else if(info.Key == ConsoleKey.Enter)
             {
-                DisplayMainMenu();
+                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
            
         }
@@ -260,7 +260,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// display the rules screen
         /// </summary>
-        public void DisplayRulesScreen()
+        public void DisplayRulesScreen(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -288,7 +288,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
             else if (info.Key == ConsoleKey.Enter)
             {
-                DisplayMainMenu();
+                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
 
         }
@@ -309,13 +309,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// display game area
         /// </summary>
-        public void DisplayGameArea()
+        public void DisplayGameArea(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             ConsoleUtil.HeaderText = "Current Game Board";
             ConsoleUtil.DisplayReset();
 
             DisplayGameboard();
-            DisplayGameStatus();
+            DisplayGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
         }
 
         /// <summary>
@@ -340,6 +340,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.DisplayMessage("Cat's Games: " + catsGames + " - " + String.Format("{0:P2}", percentageOfCatsGames));
 
             DisplayContinuePrompt();
+
+
         }
 
         /// <summary>
@@ -356,7 +358,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// display the game status screen
         /// </summary>
-        public void DisplayGameStatus()
+        public void DisplayGameStatus(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -374,24 +376,39 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     DisplayMessageBox("It is currently Player O's turn.");
                     break;
                 case Gameboard.GameboardState.PlayerXWin:
-                    DisplayMessageBox("Player X Wins! Press any key to continue.");
+                    DisplayMessageBox("Player X Wins! Press Enter key to go to main.");
 
                     Console.CursorVisible = false;
-                    Console.ReadKey();
+                    ConsoleKeyInfo response = Console.ReadKey();
+
+                    if (response.Key == ConsoleKey.Enter)
+                    {
+                        DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    }
                     Console.CursorVisible = true;
                     break;
                 case Gameboard.GameboardState.PlayerOWin:
-                    DisplayMessageBox("Player O Wins! Press any key to continue.");
+                    DisplayMessageBox("Player O Wins! Press Enter key to go to main menu.");
 
                     Console.CursorVisible = false;
-                    Console.ReadKey();
+                    ConsoleKeyInfo playerrepsonse = Console.ReadKey();
+
+                    if (playerrepsonse.Key == ConsoleKey.Enter)
+                    {
+                        DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    }
                     Console.CursorVisible = true;
                     break;
                 case Gameboard.GameboardState.CatsGame:
-                    DisplayMessageBox("Cat's Game! Press any key to continue.");
+                    DisplayMessageBox("Cat's Game! Press Enter key to go to main menu.");
 
                     Console.CursorVisible = false;
-                    Console.ReadKey();
+                    ConsoleKeyInfo myresponse = Console.ReadKey();
+
+                    if (myresponse.Key == ConsoleKey.Enter)
+                    {
+                        DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    }
                     Console.CursorVisible = true;
                     break;
                 default:
