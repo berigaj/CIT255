@@ -24,13 +24,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         private const int GAMEBOARD_VERTICAL_LOCATION = 4;
 
-        private const int POSITIONPROMPT_VERTICAL_LOCATION = 12;
+        private const int POSITIONPROMPT_VERTICAL_LOCATION = 15;
         private const int POSITIONPROMPT_HORIZONTAL_LOCATION = 3;
 
-        private const int MESSAGEBOX_VERTICAL_LOCATION = 15;
+        private const int MESSAGEBOX_VERTICAL_LOCATION = 18;
 
         private const int TOP_LEFT_ROW = 3;
-        private const int TOP_LEFT_COLUMN = 6;
+        private const int TOP_LEFT_COLUMN = 7;
 
         private Gameboard _gameboard;
         private ViewState _currentViewStat;
@@ -490,6 +490,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.DisplayMessage(message);
 
             Console.WriteLine(Environment.NewLine + leftMargin + topBottom);
+
+            Console.WriteLine(ConsoleUtil.Center("Press ESC key at anytime to exit."));
+
         }
 
         /// <summary>
@@ -652,7 +655,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     //
                     else
                     {
-                        DisplayMessageBox(coordinateType + "Your selection is out of range. Numbers are limited to (1,2,3,4)");
+                        DisplayMessageBox(coordinateType + "Your selection is out of range. Choices are limited to (1,2,3, or 4)");
                     }
                 }
                 //
@@ -660,9 +663,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 //
                 else
                 {
-                    DisplayMessageBox(coordinateType + " Your selection is out of range. Numbers are limited to (1,2,3,4)");
+                    DisplayMessageBox(coordinateType + " Your selection is not a valid number. Choices are limited to (1,2,3, or 4)");
                 }
-
                 //
                 // Increment the number of player attempts
                 //
