@@ -124,20 +124,51 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         public void DisplayMainMenu()
         {
             Console.Clear();
-
+            
             Console.CursorVisible = false;
 
             Console.WriteLine();
 
-            Console.Write("\t\t\t\t***Main Menu***\n");
-            ConsoleUtil.DisplayMessage("Enter the number of the menu option you want to continue");
+            Console.Write("\t\t\t\t   Main Menu   \n\n\n");
+            Console.Write("\t\t\t     A. Play a New Round\n");
+            Console.Write("\t\t\t     B. View Rules\n");
+            Console.Write("\t\t\t     C. View Current Game Stats\n");
+            Console.Write("\t\t\t     D. View Historic Game Stats\n");
+            Console.Write("\t\t\t     E. Save Game Results\n");
+            Console.Write("\t\t\t     F. Quit\n");
             ConsoleKeyInfo response = Console.ReadKey();
 
             Console.WriteLine();
 
             Console.CursorVisible = true;
-        }
 
+            
+            if (response.Key == ConsoleKey.A)
+            {
+                
+            }
+            else if (response.Key == ConsoleKey.B)
+            {
+
+            }
+            else if (response.Key == ConsoleKey.C)
+            {
+
+            }
+            else if (response.Key == ConsoleKey.D)
+            {
+
+            }
+            else if (response.Key == ConsoleKey.E)
+            {
+
+            }
+            else if (response.Key == ConsoleKey.F)
+            {
+                DisplayClosingScreen();
+            }
+
+        }
         /// <summary>
         /// display the session timed out screen
         /// </summary>
@@ -226,6 +257,41 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
            
         }
+
+        /// <summary>
+        /// display the rules screen
+        /// </summary>
+        public void DisplayRulesScreen()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            ConsoleUtil.HeaderText = "The Rules";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("Written by Jen Berigan and Alex Briggs");
+            ConsoleUtil.DisplayMessage("Northwestern Michigan College");
+            ConsoleUtil.DisplayMessage("Version: Sprint 2");
+            Console.WriteLine();
+
+           
+
+            sb.Clear();
+            sb.AppendFormat("Press Enter to Continue, Press Esc to Quit");
+            ConsoleUtil.DisplayMessage(sb.ToString());
+            Console.WriteLine();
+
+            ConsoleKeyInfo info = Console.ReadKey();
+            if (info.Key == ConsoleKey.Escape)
+            {
+                DisplayExitPrompt();
+            }
+            else if (info.Key == ConsoleKey.Enter)
+            {
+                DisplayMainMenu();
+            }
+
+        }
+
 
         /// <summary>
         /// display a closing screen when the user quits the application
