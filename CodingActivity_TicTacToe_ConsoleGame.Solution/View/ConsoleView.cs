@@ -44,6 +44,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             set { _currentViewStat = value; }
         }
 
+        public class Key { }
+
         #endregion
 
         #region CONSTRUCTORS
@@ -132,7 +134,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         public void DisplayMainMenu(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             Console.Clear();
-            
+
             Console.CursorVisible = false;
 
             Console.WriteLine();
@@ -153,7 +155,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             Console.CursorVisible = true;
 
-            
+
             if (response.Key == ConsoleKey.A)
             {
                 DisplayGameboard();
@@ -164,7 +166,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
             else if (response.Key == ConsoleKey.C)
             {
-                DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);   
+                DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
             else if (response.Key == ConsoleKey.D)
             {
@@ -261,11 +263,11 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             {
                 DisplayExitPrompt();
             }
-            else if(info.Key == ConsoleKey.Enter)
+            else if (info.Key == ConsoleKey.Enter)
             {
                 DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
-           
+
         }
 
         /// <summary>
@@ -526,14 +528,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                 Console.Write("\n\t\t\t        |---+---+---+---|\n");
 
-                    //Console.WriteLine("\t\t Press ESC to Exit");
-                    //ConsoleKeyInfo exitkey = Console.ReadKey();
-                    //if (exitkey.Key == ConsoleKey.Enter)
-                    //{
-                    //    DisplayClosingScreen();
-                    //}     
+                //if (Console.ReadKey().Key == ConsoleKey.Escape)
+                //{
+                //    DisplayExitPrompt();
+                //}
 
             }
+
 
         }
 
@@ -553,6 +554,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             Console.SetCursorPosition(POSITIONPROMPT_HORIZONTAL_LOCATION, POSITIONPROMPT_VERTICAL_LOCATION);
             Console.Write("Enter " + coordinateType + " number: ");
+
+
+            
         }
 
         private bool DisplayGetYesNoPrompt(string promptMessage, int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
@@ -622,7 +626,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 gameboardPosition.Column = PlayerCoordinateChoice("Column");
             }
 
+
+
             return gameboardPosition;
+
 
         }
 
@@ -658,6 +665,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                         DisplayMessageBox(coordinateType + "Your selection is out of range. Choices are limited to (1,2,3, or 4)");
                     }
                 }
+
                 //
                 // Player response cannot be parsed as integer
                 //
@@ -668,6 +676,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 //
                 // Increment the number of player attempts
                 //
+
+
                 numOfPlayerAttempts++;
             }
 
@@ -678,6 +688,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             return tempCoordinate;
         }
 
-        #endregion
-    }
+       
+
+
+    #endregion
+}
 }
