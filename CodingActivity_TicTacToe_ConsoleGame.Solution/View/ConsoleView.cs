@@ -695,6 +695,14 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             int numOfPlayerAttempts = 1;
             int maxNumOfPlayerAttempts = 4;
 
+            // add escape key to quit code here
+            ConsoleKeyInfo info = Console.ReadKey();
+            if (info.Key == ConsoleKey.Escape)
+            {
+                DisplayExitPrompt();
+            }
+
+
             while ((numOfPlayerAttempts <= maxNumOfPlayerAttempts))
             {
                 DisplayPositionPrompt(coordinateType);
