@@ -139,7 +139,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             ConsoleUtil.HeaderText = "The Tic-Tac-Toe Game";
             ConsoleUtil.DisplayReset();
-            
+
 
             Console.WriteLine(ConsoleUtil.Center("A. Play a New Round"));
             Console.WriteLine(ConsoleUtil.Center("B. View Rules"));
@@ -165,7 +165,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 if (response.Key == ConsoleKey.A)
                 {
                     Console.Clear();
-                    ChooseFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    DisplayGetFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else if (response.Key == ConsoleKey.B)
                 {
@@ -195,7 +195,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 numOfPlayerAttempts++;
             }
 
-        } 
+        }
 
         /// <summary>
         /// display the session timed out screen
@@ -213,7 +213,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// displays the who goes first method
         /// </summary>
-        public void ChooseFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public int DisplayGetFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             Console.CursorVisible = false;
 
@@ -232,39 +232,69 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             int numOfPlayerAttempts = 0;
             int maxNumOfPlayerAttempts = 3;
 
-            while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
+            while ((numOfPlayerAttempts <= maxNumOfPlayerAttempts))
             {
-                if (playerFirstChoice == 1)
-                {
-                    _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;
-                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-                }
-                else if (playerFirstChoice == 2)
-                {
-                    _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerOTurn;
-                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-                }
-                else if (playerFirstChoice == 3)
-                {
-                    Random rnd = new Random();
-                    int choice = rnd.Next(1, 3);
-                    if (choice == 1)
-                    {
-                        _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;
-                        DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
-                    else
-                    {
-                        _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerOTurn;
-                        DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
-                }
 
-                else { Console.WriteLine("Player has entered an incorrect key"); }
+                switch (playerFirstChoice)
+                {
+                    case 1:
+                        {
+
+                             PlayerPiece = Gameboard.PlayerPiece.X;
+                            break;
+                        }
+
+                    case 2:
+                        {
+                            PlayerPiece = Gameboard.PlayerPiece.O;
+                            //DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                            break;
+                        }
+                    case 3:
+                        {
+                            Random rnd = new Random();
+                            int choice = rnd.Next(1, 3);
+                            if (choice == 1)
+                            {
+                                PlayerPiece = Gameboard.PlayerPiece.X;
+
+                            }
+                            else
+                            {
+                                PlayerPiece = Gameboard.PlayerPiece.O;
+
+                            }
+                            break;
+                        }
+
+                    default:
+                        {
+                            Console.WriteLine("You have pressed an incorrect key!");
+                            Console.ReadKey();
+                            break;
+                        }
+                }
 
                 numOfPlayerAttempts++;
+                return PlayerPiece;
             }
-        }  
+
+         
+           CurrentViewState = ViewState.PlayerUsedMaxAttempts;
+            return playerFirstChoice;
+        }
+
+        public void DisplayFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        {
+            if (PlayerPiece = Gameboard.PlayerPiece.X || PlayerPiece = Gameboard.PlayerPiece.O)
+            {
+                DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+            }
+            else
+            {
+                DisplayClosingScreen();
+            }
+        }
 
         /// <summary>
         /// display the maximum attempts reached screen
@@ -395,7 +425,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         {
             ConsoleUtil.HeaderText = "Current Game Board";
             ConsoleUtil.DisplayReset();
-            
+
             DisplayGameboard();
             DisplayGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
         }
