@@ -137,28 +137,33 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             Console.CursorVisible = false;
 
-            Console.WriteLine();
+            ConsoleUtil.HeaderText = "The Tic-Tac-Toe Game";
+            ConsoleUtil.DisplayReset();
 
-            Console.Write("\t\t\t\t   Main Menu   \n\n\n");
-            Console.Write("\t\t\t     A. Play a New Round\n");
-            Console.Write("\t\t\t     B. View Rules\n");
-            Console.Write("\t\t\t     C. View Current Game Stats\n");
-            Console.Write("\t\t\t     D. View Historic Game Stats\n");
-            Console.Write("\t\t\t     E. Save Game Results\n");
-            Console.Write("\t\t\t     F. Quit\n");
+
+            Console.WriteLine(ConsoleUtil.Center("A. Play a New Round"));
+            Console.WriteLine(ConsoleUtil.Center("B. View Rules"));
+            Console.WriteLine(ConsoleUtil.Center("C. View Current Game Stats"));
+            Console.WriteLine(ConsoleUtil.Center("D. View Historic Game Stats"));
+            Console.WriteLine(ConsoleUtil.Center("E. Save Game Results"));
+            Console.WriteLine(ConsoleUtil.Center("F. Quit"));
             Console.WriteLine();
             Console.WriteLine();
-            Console.Write("\t\t\t Enter a letter to go to that screen");
+            Console.WriteLine(ConsoleUtil.Center("Enter a letter to go to that screen"));
             ConsoleKeyInfo response = Console.ReadKey();
 
             Console.WriteLine();
 
             Console.CursorVisible = true;
 
+            //while (true)
+            //{
 
+            //}
             if (response.Key == ConsoleKey.A)
             {
-                DisplayGameboard();
+                Console.Clear();
+                ChooseFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
             else if (response.Key == ConsoleKey.B)
             {
@@ -195,6 +200,54 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             DisplayContinuePrompt();
         }
+
+        /// <summary>
+        /// displays the who goes first method
+        /// </summary>
+        public void ChooseFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        {
+            Console.CursorVisible = false;
+
+            int playerFirstChoice;
+
+            // asks the player who wants to go first
+            ConsoleUtil.HeaderText = "Who Goes First?";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine(ConsoleUtil.Center("1. Player X"));
+            Console.WriteLine(ConsoleUtil.Center("2. Player O"));
+            Console.WriteLine(ConsoleUtil.Center("3. Let Us Decide"));
+            playerFirstChoice = Convert.ToInt32(Console.ReadLine());
+
+
+           // while (playerFirstChoice)
+           // {
+                if (playerFirstChoice == 1)
+                {
+                    _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;
+                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                }
+                else if (playerFirstChoice == 2)
+                {
+                    _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerOTurn;
+                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+            }
+                else if (playerFirstChoice == 3)
+                {
+                    Random rnd = new Random();
+                    int choice = rnd.Next(1, 3);
+                    if (choice == 1)
+                    {
+                        _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;
+                        DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);                    
+                    }
+                    else
+                    {
+                        _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerOTurn;
+                        DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    }
+                }
+            }  
 
         /// <summary>
         /// display the maximum attempts reached screen
@@ -242,19 +295,19 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.HeaderText = "The Tic-Tac-Toe Game";
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage("Written by Jen Berigan and Alex Briggs");
-            ConsoleUtil.DisplayMessage("Northwestern Michigan College");
-            ConsoleUtil.DisplayMessage("Version: Sprint 2");
+            Console.WriteLine(ConsoleUtil.Center("Written by Jen Berigan and Alex Briggs"));
+            Console.WriteLine(ConsoleUtil.Center("Northwestern Michigan College"));
+            Console.WriteLine(ConsoleUtil.Center("Version: Sprint 2"));
             Console.WriteLine();
 
             sb.Clear();
-            sb.AppendFormat("This application is designed to allow two players to play ");
-            sb.AppendFormat("a game of tic-tac-toe. Though there's a bit of a twist...we have a 4x4 gameboard");
+            sb.AppendFormat(ConsoleUtil.Center("This application is designed to allow two players to play a game of tic-tac-toe. Though there's a bit of a twist...we have a 4x4 gameboard"));
             ConsoleUtil.DisplayMessage(sb.ToString());
             Console.WriteLine();
+            Console.WriteLine();
 
             sb.Clear();
-            sb.AppendFormat("Press Enter to Continue, Press Esc to Quit");
+            Console.WriteLine(ConsoleUtil.Center("Press ESC key at anytime to exit."));
             ConsoleUtil.DisplayMessage(sb.ToString());
             Console.WriteLine();
 
@@ -280,18 +333,17 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.HeaderText = "The Rules";
             ConsoleUtil.DisplayReset();
 
-            Console.Write("\t\t\t This is tic-tac-toe with a twist.");
+            Console.WriteLine(ConsoleUtil.Center("This is tic-tac-toe with a twist."));
+            Console.WriteLine(ConsoleUtil.Center("Instead of a 3x3 gameboard, we have a 4x4 gameboard."));
             Console.WriteLine();
-            Console.Write("\t\t Instead of a 3x3 gameboard, we have a 4x4 gameboard.");
-            Console.WriteLine();
-            Console.Write("\t You can win by getting four up, down, diagonal, and four corners.");
+            Console.WriteLine(ConsoleUtil.Center("You can win by getting four up, down, diagonal, and four corners."));
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
 
 
             sb.Clear();
-            Console.Write("\t\t\t Press Enter to Continue, Press Esc to Quit");
+            Console.WriteLine(ConsoleUtil.Center("Press Enter to Continue, Press Esc to Quit"));
             Console.WriteLine();
 
             ConsoleKeyInfo info = Console.ReadKey();
@@ -326,10 +378,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         {
             ConsoleUtil.HeaderText = "Current Game Board";
             ConsoleUtil.DisplayReset();
-
+            
             DisplayGameboard();
             DisplayGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
-
         }
 
         /// <summary>
@@ -556,7 +607,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.Write("Enter " + coordinateType + " number: ");
 
 
-            
+
         }
 
         private bool DisplayGetYesNoPrompt(string promptMessage, int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
@@ -688,9 +739,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             return tempCoordinate;
         }
 
-       
 
 
-    #endregion
-}
+
+        #endregion
+    }
 }
