@@ -113,7 +113,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.CursorVisible = false;
 
             Console.WriteLine();
-            Console.Write("\t Thank you for playing the game. Press any key to Exit.");
+            Console.Write("\t\t Thank you for playing the game. Press any key to Exit.");
 
             Console.ReadKey();
 
@@ -150,7 +150,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine(ConsoleUtil.Center("Enter a letter to go to that screen"));
-            ConsoleKeyInfo response = Console.ReadKey();
 
             Console.WriteLine();
 
@@ -161,6 +160,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
             {
+                ConsoleKeyInfo response = Console.ReadKey();
 
                 if (response.Key == ConsoleKey.A)
                 {
@@ -189,12 +189,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
                 else
                 {
-                    Console.WriteLine("You pressed an incorrect key");
+                    Console.WriteLine("\t\t That was an invalid key, please try again!");
                 }
 
                 numOfPlayerAttempts++;
             }
 
+            DisplayExitPrompt();
         }
 
         /// <summary>
@@ -358,10 +359,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.DisplayMessage(sb.ToString());
             Console.WriteLine();
 
-
             int numOfPlayerAttempts = 0;
             int maxNumOfPlayerAttempts = 3;
 
+            // While loop validates the choice of enter, escape, or any wrong key
             while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
             {
                 ConsoleKeyInfo info = Console.ReadKey();
@@ -376,16 +377,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
                 else
                 {
-                    Console.WriteLine("\t That was an invalid answer, please try again!");
+                    Console.WriteLine("\t\t That was an invalid answer, please try again!");
                 }
 
                 numOfPlayerAttempts++;
-
-
             }
 
             DisplayExitPrompt();
-
         }
 
         /// <summary>
