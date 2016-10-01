@@ -34,7 +34,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         private Gameboard _gameboard;
         private ViewState _currentViewStat;
-        private Gameboard.PlayerPiece PlayerPiece;
+        private Gameboard.GameboardState PlayerPiece;
 
         #endregion
 
@@ -229,8 +229,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.WriteLine(ConsoleUtil.Center("B. Player O"));
             Console.WriteLine(ConsoleUtil.Center("C. Let Us Decide"));
 
-
-
             int numOfPlayerAttempts = 0;
             int maxNumOfPlayerAttempts = 3;
 
@@ -240,12 +238,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                 if (response.Key == ConsoleKey.A)
                 {
-                    PlayerPiece = Gameboard.PlayerPiece.X;
+                    PlayerPiece = Gameboard.GameboardState.PlayerXTurn;
                     DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else if (response.Key == ConsoleKey.B)
                 {
-                    PlayerPiece = Gameboard.PlayerPiece.O;
+                    PlayerPiece = Gameboard.GameboardState.PlayerOTurn;
                     DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else if (response.Key == ConsoleKey.C)
@@ -254,12 +252,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     int choice = rnd.Next(1, 3);
                     if (choice == 1)
                     {
-                        PlayerPiece = Gameboard.PlayerPiece.X;
+                        PlayerPiece = Gameboard.GameboardState.PlayerXTurn;
                         DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                     else
                     {
-                        PlayerPiece = Gameboard.PlayerPiece.O;
+                        PlayerPiece = Gameboard.GameboardState.PlayerOTurn;
                         DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                 }
