@@ -16,6 +16,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         private bool _playingRound;
 
         private int _roundNumber;
+        private int row, column;
 
         //
         // track the results of multiple rounds
@@ -96,6 +97,25 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     // Evaluate and update the current game board state
                     //
                     _gameboard.UpdateGameboardState();
+
+                    //
+                    // insert try/catch/catch block here
+                    //
+                    try
+                    {
+                        _gameboard.SetPlayerPiece(new GameboardPosition(row, column), Gameboard.PlayerPiece.O);
+                    }
+                    catch (Controller.PositionChoiceOutOfRangeException ex)
+                    {
+                        Console.WriteLine("I think you tried an illegal move!");
+                        Console.WriteLine(ex.Message);
+                    }
+                    catch (Controller.PoisitionChoiceAlreadyTakenException ex)
+                    {
+
+                        Console.WriteLine("That move is not allowed!");
+                        Console.WriteLine(ex.Message);
+                    }
                 }
 
                 //
