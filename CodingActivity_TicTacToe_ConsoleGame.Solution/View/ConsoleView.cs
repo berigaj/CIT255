@@ -240,13 +240,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     case 1:
                         {
 
-                             PlayerPiece = Gameboard.PlayerPiece.X;
+                            // PlayerPiece = Gameboard.PlayerPiece.X;
                             break;
                         }
 
                     case 2:
                         {
-                            PlayerPiece = Gameboard.PlayerPiece.O;
+                            //PlayerPiece = Gameboard.PlayerPiece.O;
                             //DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
                             break;
                         }
@@ -256,12 +256,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                             int choice = rnd.Next(1, 3);
                             if (choice == 1)
                             {
-                                PlayerPiece = Gameboard.PlayerPiece.X;
+                                // PlayerPiece = Gameboard.PlayerPiece.X;
 
                             }
                             else
                             {
-                                PlayerPiece = Gameboard.PlayerPiece.O;
+                                // PlayerPiece = Gameboard.PlayerPiece.O;
 
                             }
                             break;
@@ -276,24 +276,24 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
 
                 numOfPlayerAttempts++;
-                return PlayerPiece;
+                //  return PlayerPiece;
             }
 
-         
-           CurrentViewState = ViewState.PlayerUsedMaxAttempts;
+
+            CurrentViewState = ViewState.PlayerUsedMaxAttempts;
             return playerFirstChoice;
         }
 
         public void DisplayFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
-            if (PlayerPiece = Gameboard.PlayerPiece.X || PlayerPiece = Gameboard.PlayerPiece.O)
-            {
-                DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-            }
-            else
-            {
-                DisplayClosingScreen();
-            }
+            // if (PlayerPiece = Gameboard.PlayerPiece.X || PlayerPiece = Gameboard.PlayerPiece.O)
+            //  {
+            //      DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+            //  }
+            //  else
+            //  {
+            //      DisplayClosingScreen();
+            //  }
         }
 
         /// <summary>
@@ -358,15 +358,33 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.DisplayMessage(sb.ToString());
             Console.WriteLine();
 
-            ConsoleKeyInfo info = Console.ReadKey();
-            if (info.Key == ConsoleKey.Escape)
+
+            int numOfPlayerAttempts = 0;
+            int maxNumOfPlayerAttempts = 3;
+
+            while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
             {
-                DisplayExitPrompt();
+                ConsoleKeyInfo info = Console.ReadKey();
+
+                if (info.Key == ConsoleKey.Escape)
+                {
+                    DisplayExitPrompt();
+                }
+                else if (info.Key == ConsoleKey.Enter)
+                {
+                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                }
+                else
+                {
+                    Console.WriteLine("\t That was an invalid answer, please try again!");
+                }
+
+                numOfPlayerAttempts++;
+
+
             }
-            else if (info.Key == ConsoleKey.Enter)
-            {
-                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
-            }
+
+            DisplayExitPrompt();
 
         }
 
