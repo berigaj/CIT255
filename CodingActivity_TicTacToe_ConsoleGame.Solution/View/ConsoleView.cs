@@ -34,6 +34,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         private Gameboard _gameboard;
         private ViewState _currentViewStat;
+        private Gameboard.GameboardState PlayerPiece;
 
         #endregion
 
@@ -113,7 +114,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.CursorVisible = false;
 
             Console.WriteLine();
-            Console.Write("\t Thank you for playing the game. Press any key to Exit.");
+            Console.Write("\t\t Thank you for playing the game. Press any key to Exit.");
 
             Console.ReadKey();
 
@@ -150,7 +151,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine(ConsoleUtil.Center("Enter a letter to go to that screen"));
-            ConsoleKeyInfo response = Console.ReadKey();
 
             Console.WriteLine();
 
@@ -161,6 +161,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
             {
+                ConsoleKeyInfo response = Console.ReadKey();
 
                 if (response.Key == ConsoleKey.A)
                 {
@@ -189,12 +190,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
                 else
                 {
-                    Console.WriteLine("You pressed an incorrect key");
+                    Console.WriteLine("\t\t That was an invalid key, please try again!");
                 }
 
                 numOfPlayerAttempts++;
             }
 
+            DisplayExitPrompt();
         }
 
         /// <summary>
@@ -213,7 +215,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// displays the who goes first method
         /// </summary>
-        public int DisplayGetFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public void DisplayGetFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             Console.CursorVisible = false;
 
@@ -223,77 +225,69 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.HeaderText = "Who Goes First?";
             ConsoleUtil.DisplayReset();
 
-            Console.WriteLine(ConsoleUtil.Center("1. Player X"));
-            Console.WriteLine(ConsoleUtil.Center("2. Player O"));
-            Console.WriteLine(ConsoleUtil.Center("3. Let Us Decide"));
-            playerFirstChoice = Convert.ToInt32(Console.ReadLine());
-
+            Console.WriteLine(ConsoleUtil.Center("A. Player X"));
+            Console.WriteLine(ConsoleUtil.Center("B. Player O"));
+            Console.WriteLine(ConsoleUtil.Center("C. Let Us Decide"));
 
             int numOfPlayerAttempts = 0;
             int maxNumOfPlayerAttempts = 3;
 
             while ((numOfPlayerAttempts <= maxNumOfPlayerAttempts))
             {
+                ConsoleKeyInfo response = Console.ReadKey();
 
-                switch (playerFirstChoice)
+                if (response.Key == ConsoleKey.A)
                 {
-                    case 1:
-                        {
-
-                             PlayerPiece = Gameboard.PlayerPiece.X;
-                            break;
-                        }
-
-                    case 2:
-                        {
-                            PlayerPiece = Gameboard.PlayerPiece.O;
-                            //DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-                            break;
-                        }
-                    case 3:
-                        {
-                            Random rnd = new Random();
-                            int choice = rnd.Next(1, 3);
-                            if (choice == 1)
-                            {
-                                PlayerPiece = Gameboard.PlayerPiece.X;
-
-                            }
-                            else
-                            {
-                                PlayerPiece = Gameboard.PlayerPiece.O;
-
-                            }
-                            break;
-                        }
-
-                    default:
-                        {
-                            Console.WriteLine("You have pressed an incorrect key!");
-                            Console.ReadKey();
-                            break;
-                        }
+                    PlayerPiece = Gameboard.GameboardState.PlayerXTurn;
+                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
-
+                else if (response.Key == ConsoleKey.B)
+                {
+                    PlayerPiece = Gameboard.GameboardState.PlayerOTurn;
+                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                }
+                else if (response.Key == ConsoleKey.C)
+                {
+                    Random rnd = new Random();
+                    int choice = rnd.Next(1, 3);
+                    if (choice == 1)
+                    {
+                        PlayerPiece = Gameboard.GameboardState.PlayerXTurn;
+                        DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    }
+                    else
+                    {
+                        PlayerPiece = Gameboard.GameboardState.PlayerOTurn;
+                        DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You have pressed an incorrect key!");
+                    Console.ReadKey();
+                }
                 numOfPlayerAttempts++;
-                return PlayerPiece;
             }
+            
 
-         
-           CurrentViewState = ViewState.PlayerUsedMaxAttempts;
-            return playerFirstChoice;
+            DisplayExitPrompt();
+
         }
 
         public void DisplayFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
-            if (PlayerPiece = Gameboard.PlayerPiece.X || PlayerPiece = Gameboard.PlayerPiece.O)
-            {
-                DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-            }
-            else
-            {
-                DisplayClosingScreen();
-            }
+            //if (Convert.ToBoolean(PlayerPiece = Gameboard.PlayerPiece.X))
+            //{
+            //    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+            //}
+            //else if (Convert.ToBoolean(PlayerPiece = Gameboard.PlayerPiece.O))
+            //{
+            //    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+            //}
+            //else
+            //{
+            //    DisplayClosingScreen();
+            //}
         }
 
         /// <summary>
@@ -358,16 +352,31 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.DisplayMessage(sb.ToString());
             Console.WriteLine();
 
-            ConsoleKeyInfo info = Console.ReadKey();
-            if (info.Key == ConsoleKey.Escape)
+            int numOfPlayerAttempts = 0;
+            int maxNumOfPlayerAttempts = 3;
+
+            // While loop validates the choice of enter, escape, or any wrong key
+            while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
             {
-                DisplayExitPrompt();
-            }
-            else if (info.Key == ConsoleKey.Enter)
-            {
-                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                ConsoleKeyInfo info = Console.ReadKey();
+
+                if (info.Key == ConsoleKey.Escape)
+                {
+                    DisplayExitPrompt();
+                }
+                else if (info.Key == ConsoleKey.Enter)
+                {
+                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                }
+                else
+                {
+                    Console.WriteLine("\t\t That was an invalid answer, please try again!");
+                }
+
+                numOfPlayerAttempts++;
             }
 
+            DisplayExitPrompt();
         }
 
         /// <summary>
