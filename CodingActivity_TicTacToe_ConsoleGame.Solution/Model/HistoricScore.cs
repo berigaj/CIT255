@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace CodingActivity_TicTacToe_ConsoleGame.Model
 {
-    class HistoricScore
+    public class HistoricScore
     {
-       
+        public string PlayerXName { get; set; }
+        public int PlayerXScore { get; set; }
+
+        public string PlayerYName { get; set; }
+        public int PlayerYScore { get; set; }
     }
 }

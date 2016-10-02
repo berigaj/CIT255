@@ -507,6 +507,60 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
 
         }
+        /// <summary>
+        /// prompts to save player scores to history
+        /// </summary>
+        private static string DisplaySavePlayerHistory(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        {
+            //
+            // get player scores from current game stats
+            // 
+            int playerXScore = roundsPlayed * playerXWins;
+
+            Console.WriteLine("Enter Player X's Name: ");
+            string playerXName = Console.ReadLine();
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(playerXName + Data.DataSettings.Delineator);
+            sb.Append(playerXScore + Data.DataSettings.Delineator);
+
+            return sb.ToString();
+
+            Console.WriteLine("Enter Player Y's Name: ");
+            string playerYName = Console.ReadLine();
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(playerYName + Data.DataSettings.Delineator);
+            sb.Append(playerYScore + Data.DataSettings.Delineator);
+
+            return sb.ToString();
+        }
+
+        /// <summary>       
+        /// save player stats to data file
+        /// </summary>
+        /// <param name="playerData">string that is written to data file.</param>
+        private static void SavePlayerHistory(string playerData)
+        {
+            try
+            {
+                //
+                // use StreamWriter to add data to file
+                //
+                StreamWriter sWriter = new StreamWriter(DataSettings.DataFilePath, true);
+
+                using (sWriter)
+                {
+                    sWriter.WriteLine(playerData);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
         /// <summary>
         /// display new round prompt
