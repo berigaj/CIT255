@@ -8,9 +8,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame.Model
 {
     class HistoricScore
     {
-        public int roundsPlayed { get; set; }
-        public int playerXWins { get; set; }
-        public int playerOWins { get; set; }
-        public int catsGames { get; set; }
+       
     }
 }
