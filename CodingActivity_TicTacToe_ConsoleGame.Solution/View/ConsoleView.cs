@@ -160,13 +160,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             int numOfPlayerAttempts = 0;
             int maxNumOfPlayerAttempts = 3;
 
-            while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
-            {
+           // while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
+           // {
                 ConsoleKeyInfo response = Console.ReadKey();
 
                 if (response.Key == ConsoleKey.A)
                 {
-                    DisplayGetFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
+                DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else if (response.Key == ConsoleKey.B)
                 {
@@ -191,13 +191,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 else
                 {
                     Console.WriteLine("\t\t That was an invalid key, please try again!");
-                    numOfPlayerAttempts++;
+                   // numOfPlayerAttempts++;
                 }
 
                 
-            }
+           // }
 
-            DisplayExitPrompt();
+           // DisplayExitPrompt();
         }
 
         /// <summary>
@@ -355,8 +355,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             int maxNumOfPlayerAttempts = 3;
 
             // While loop validates the choice of enter, escape, or any wrong key
-            while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
-            {
+         //   while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
+          //  {
                 ConsoleKeyInfo info = Console.ReadKey();
 
                 if (info.Key == ConsoleKey.Escape)
@@ -374,9 +374,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
 
                 
-            }
-
-            DisplayExitPrompt();
+          //  }
+          
+           // DisplayExitPrompt();
         }
 
         /// <summary>
