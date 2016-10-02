@@ -34,7 +34,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         private Gameboard _gameboard;
         private ViewState _currentViewStat;
-        private Gameboard.GameboardState PlayerPiece;
+        private Gameboard.PlayerPiece PlayerPiece;
+        private Gameboard.GameboardState PlayerState;
 
         #endregion
 
@@ -165,7 +166,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                 if (response.Key == ConsoleKey.A)
                 {
-                    Console.Clear();
                     DisplayGetFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else if (response.Key == ConsoleKey.B)
@@ -191,9 +191,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 else
                 {
                     Console.WriteLine("\t\t That was an invalid key, please try again!");
+                    numOfPlayerAttempts++;
                 }
 
-                numOfPlayerAttempts++;
+                
             }
 
             DisplayExitPrompt();
@@ -215,7 +216,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// displays the who goes first method
         /// </summary>
-        public void DisplayGetFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public Gameboard.PlayerPiece DisplayGetFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             Console.CursorVisible = false;
 
@@ -238,13 +239,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                 if (response.Key == ConsoleKey.A)
                 {
-                    PlayerPiece = Gameboard.GameboardState.PlayerXTurn;
+                    PlayerState = Gameboard.GameboardState.PlayerXTurn;
                     DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else if (response.Key == ConsoleKey.B)
                 {
-                    PlayerPiece = Gameboard.GameboardState.PlayerOTurn;
-                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    PlayerState = Gameboard.GameboardState.PlayerOTurn;
+                    DisplayFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else if (response.Key == ConsoleKey.C)
                 {
@@ -252,25 +253,26 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     int choice = rnd.Next(1, 3);
                     if (choice == 1)
                     {
-                        PlayerPiece = Gameboard.GameboardState.PlayerXTurn;
-                        DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                        PlayerState = Gameboard.GameboardState.PlayerXTurn;
+                        DisplayFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                     else
                     {
-                        PlayerPiece = Gameboard.GameboardState.PlayerOTurn;
-                        DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                        PlayerState = Gameboard.GameboardState.PlayerOTurn;
+                        DisplayFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                 }
                 else
                 {
                     Console.WriteLine("You have pressed an incorrect key!");
-                    Console.ReadKey();
+                    numOfPlayerAttempts++;
                 }
-                numOfPlayerAttempts++;
+                
             }
-            
+
 
             DisplayExitPrompt();
+            return PlayerPiece;
 
         }
 
@@ -278,15 +280,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         {
             //if (Convert.ToBoolean(PlayerPiece = Gameboard.PlayerPiece.X))
             //{
-            //    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-            //}
-            //else if (Convert.ToBoolean(PlayerPiece = Gameboard.PlayerPiece.O))
-            //{
+            //    PlayerState = Gameboard.GameboardState.PlayerXTurn;
             //    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
             //}
             //else
             //{
-            //    DisplayClosingScreen();
+            //    DisplayExitPrompt();
             //}
         }
 
@@ -371,9 +370,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 else
                 {
                     Console.WriteLine("\t\t That was an invalid answer, please try again!");
+                    numOfPlayerAttempts++;
                 }
 
-                numOfPlayerAttempts++;
+                
             }
 
             DisplayExitPrompt();
