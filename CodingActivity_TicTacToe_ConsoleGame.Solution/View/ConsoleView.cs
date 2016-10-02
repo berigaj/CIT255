@@ -123,15 +123,66 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         }
 
         /// <summary>
-        /// display the save game screen
+        /// display the save game prompt
         /// </summary>
-        public void DisplaySaveGameScreen()
+        public bool DisplaySaveGamePrompt()
         {
 
+            ConsoleUtil.HeaderText = "Save Game or Quit";
+            ConsoleUtil.DisplayReset();
+
+            return DisplayGetYesNoSaveGamePrompt("Would you like to save game?", 0, 0, 0, 0);
         }
 
         /// <summary>
-        /// display the MainMenu prompt
+        /// display the yes or no save game prompt
+        /// </summary>
+        public bool DisplayGetYesNoSaveGamePrompt(string promptMessage, int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        {
+
+            bool yesNoChoice = false;
+            bool validResponse = false;
+            string userResponse;
+
+            while (!validResponse)
+            {
+                ConsoleUtil.DisplayReset();
+
+                ConsoleUtil.DisplayPromptMessage(promptMessage + "(yes/no)");
+                userResponse = Console.ReadLine();
+
+                if (userResponse.ToUpper() == "YES")
+                {
+                    validResponse = true;
+                    yesNoChoice = true;
+                    DisplaySaveGame();
+                }
+                else if (userResponse.ToUpper() == "NO")
+                {
+                    validResponse = true;
+                    yesNoChoice = false;
+                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                }
+                else
+                {
+                    ConsoleUtil.DisplayMessage(
+                        "It appears that you have entered an incorrect response." +
+                        " Please enter either \"yes\" or \"no\"."
+                        );
+                    DisplayContinuePrompt();
+                }
+            }
+
+            return yesNoChoice;
+        }
+
+        /// <summary>
+        /// display the save game screen
+        /// </summary>
+        public void DisplaySaveGame() { }
+
+        /// <summary>
+        /// display the MainMenu screen
         /// </summary>
         public void DisplayMainMenu(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
@@ -182,7 +233,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
                 else if (response.Key == ConsoleKey.E)
                 {
-                    DisplaySaveGameScreen();
+                    DisplaySaveGamePrompt();
                 }
                 else if (response.Key == ConsoleKey.F)
                 {
