@@ -388,6 +388,83 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
         }
 
+        /// <summary>       
+        /// save player stats to data file
+        /// </summary>
+        /// <param name="playerData">string that is written to data file.</param>
+        private static void SavePlayerHistory(string playerData)
+        {
+            try
+            {
+                //
+                // use StreamWriter to add data to file
+                //
+                // StreamWriter sWriter = new StreamWriter(DataSettings.DataFilePath, true);
+
+                // using (sWriter)
+                // {
+                //    sWriter.WriteLine(playerData);
+                // }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Read all historic player scores
+        /// </summary>
+        /// <returns>list of historic scores</returns>
+        private static List<HistoricScore> ReadPlayerHistory()
+        {
+            const char delineator = ','; // delineator in a CSV file
+
+            List<HistoricScore> historicScores = new List<HistoricScore>();
+
+            //
+            // create lists to hold the historic score strings
+            //
+            List<string> historicScoresStringList = new List<string>();
+
+            try
+            {
+                //
+                // initialize a StreamReader object for reading from a file
+                //
+
+                //
+                // read all data from the data file
+                // note: using statement
+                //
+
+            }
+            //
+            // an I/O error was encountered
+            //
+            catch (Exception)
+            {
+
+            }
+
+            //
+            // separate each line of text from the file into HistoricScore objects
+            //
+            if (historicScoresStringList != null)
+            {
+                //
+                // separate lines into fields and build out the list of historic scores
+                //
+                foreach (string historicScore in historicScoresStringList)
+                {
+
+                }
+            }
+
+            return historicScores;
+        }
+
         #endregion
     }
 }
