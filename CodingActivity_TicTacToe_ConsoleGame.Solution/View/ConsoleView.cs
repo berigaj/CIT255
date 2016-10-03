@@ -122,22 +122,11 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             System.Environment.Exit(1);
         }
 
-        /// <summary>
-        /// display the save game prompt
-        /// </summary>
-        public bool DisplaySaveGamePrompt()
-        {
-
-            ConsoleUtil.HeaderText = "Save Game or Quit";
-            ConsoleUtil.DisplayReset();
-
-            return DisplayGetYesNoSaveGamePrompt("Would you like to save game?", 0, 0, 0, 0);
-        }
 
         /// <summary>
         /// display the yes or no save game prompt
         /// </summary>
-        public bool DisplayGetYesNoSaveGamePrompt(string promptMessage, int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public bool DisplayGetYesNoSaveGamePrompt()
         {
 
             bool yesNoChoice = false;
@@ -148,7 +137,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             {
                 ConsoleUtil.DisplayReset();
 
-                ConsoleUtil.DisplayPromptMessage(promptMessage + "(yes/no)");
+                Console.WriteLine("\t\t Do you wanna save this game? (yes/no)");
                 userResponse = Console.ReadLine();
 
                 if (userResponse.ToUpper() == "YES")
@@ -161,7 +150,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 {
                     validResponse = true;
                     yesNoChoice = false;
-                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    System.Environment.Exit(1);
                 }
                 else
                 {
@@ -233,7 +222,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
                 else if (response.Key == ConsoleKey.E)
                 {
-                    DisplaySaveGamePrompt();
+                    DisplayGetYesNoSaveGamePrompt();
                 }
                 else if (response.Key == ConsoleKey.F)
                 {
@@ -567,6 +556,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             // get player scores from current game stats
             // 
             int playerXScore = roundsPlayed * playerXWins;
+            int playerOScore = roundsPlayed * playerOWins;
 
             Console.WriteLine("Enter Player X's Name: ");
             string playerXName = Console.ReadLine();
@@ -577,12 +567,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             return sb.ToString();
 
-            Console.WriteLine("Enter Player Y's Name: ");
-            string playerYName = Console.ReadLine();
+            Console.WriteLine("Enter Player O's Name: ");
+            string playerOName = Console.ReadLine();
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append(playerYName + Data.DataSettings.Delineator);
-            sb.Append(playerYScore + Data.DataSettings.Delineator);
+            StringBuilder sb2 = new StringBuilder();
+            sb.Append(playerOName + Data.DataSettings.Delineator);
+            sb.Append(playerOScore + Data.DataSettings.Delineator);
 
             return sb.ToString();
         }
@@ -598,12 +588,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 //
                 // use StreamWriter to add data to file
                 //
-                StreamWriter sWriter = new StreamWriter(DataSettings.DataFilePath, true);
+               // StreamWriter sWriter = new StreamWriter(DataSettings.DataFilePath, true);
 
-                using (sWriter)
-                {
-                    sWriter.WriteLine(playerData);
-                }
+               // using (sWriter)
+               // {
+                //    sWriter.WriteLine(playerData);
+               // }
             }
             catch (Exception)
             {
@@ -611,7 +601,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 throw;
             }
         }
-
 
         /// <summary>
         /// display new round prompt
@@ -860,7 +849,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleKeyInfo info = Console.ReadKey();
             if (info.Key == ConsoleKey.Escape)
             {
-                DisplayExitPrompt();
+                DisplayGetYesNoSaveGamePrompt();
             }
 
 
