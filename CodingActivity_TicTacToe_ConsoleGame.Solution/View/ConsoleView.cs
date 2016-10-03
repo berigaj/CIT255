@@ -335,6 +335,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
 
         }
+
         /// <summary>
         /// prompts to save player scores to history
         /// </summary>
@@ -363,31 +364,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             sb.Append(playerOScore + Data.DataSettings.Delineator);
 
             return sb.ToString();
-        }
-
-        /// <summary>       
-        /// save player stats to data file
-        /// </summary>
-        /// <param name="playerData">string that is written to data file.</param>
-        private static void SavePlayerHistory(string playerData)
-        {
-            try
-            {
-                //
-                // use StreamWriter to add data to file
-                //
-                // StreamWriter sWriter = new StreamWriter(DataSettings.DataFilePath, true);
-
-                // using (sWriter)
-                // {
-                //    sWriter.WriteLine(playerData);
-                // }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
         /// <summary>
