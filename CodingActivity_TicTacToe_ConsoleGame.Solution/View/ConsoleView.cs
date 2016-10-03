@@ -567,6 +567,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             // get player scores from current game stats
             // 
             int playerXScore = roundsPlayed * playerXWins;
+            int playerOScore = roundsPlayed * playerOWins;
 
             Console.WriteLine("Enter Player X's Name: ");
             string playerXName = Console.ReadLine();
@@ -577,12 +578,15 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             return sb.ToString();
 
-            Console.WriteLine("Enter Player Y's Name: ");
-            string playerYName = Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine("Player X saved, press any key to continue.");
+            Console.ReadKey();
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append(playerYName + Data.DataSettings.Delineator);
-            sb.Append(playerYScore + Data.DataSettings.Delineator);
+            Console.WriteLine("Enter Player O's Name: ");
+            string playerOName = Console.ReadLine();
+
+            sb.Append(playerOName + Data.DataSettings.Delineator);
+            sb.Append(playerOScore + Data.DataSettings.Delineator);
 
             return sb.ToString();
         }
@@ -598,7 +602,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 //
                 // use StreamWriter to add data to file
                 //
-                StreamWriter sWriter = new StreamWriter(DataSettings.DataFilePath, true);
+                StreamWriter sWriter = new StreamWriter(Data.DataSettings.DataFilePath, true);
 
                 using (sWriter)
                 {
