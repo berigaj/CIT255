@@ -122,22 +122,11 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             System.Environment.Exit(1);
         }
 
-        /// <summary>
-        /// display the save game prompt
-        /// </summary>
-        public bool DisplaySaveGamePrompt()
-        {
-
-            ConsoleUtil.HeaderText = "Save Game or Quit";
-            ConsoleUtil.DisplayReset();
-
-            return DisplayGetYesNoSaveGamePrompt("Would you like to save game?", 0, 0, 0, 0);
-        }
 
         /// <summary>
         /// display the yes or no save game prompt
         /// </summary>
-        public bool DisplayGetYesNoSaveGamePrompt(string promptMessage, int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public bool DisplayGetYesNoSaveGamePrompt()
         {
 
             bool yesNoChoice = false;
@@ -148,7 +137,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             {
                 ConsoleUtil.DisplayReset();
 
-                ConsoleUtil.DisplayPromptMessage(promptMessage + "(yes/no)");
+                Console.WriteLine("\t\t Do you wanna save this game? (yes/no)");
                 userResponse = Console.ReadLine();
 
                 if (userResponse.ToUpper() == "YES")
@@ -161,7 +150,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 {
                     validResponse = true;
                     yesNoChoice = false;
-                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    System.Environment.Exit(1);
                 }
                 else
                 {
@@ -233,7 +222,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
                 else if (response.Key == ConsoleKey.E)
                 {
-                    DisplaySaveGamePrompt();
+                    DisplayGetYesNoSaveGamePrompt();
                 }
                 else if (response.Key == ConsoleKey.F)
                 {
@@ -578,13 +567,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             return sb.ToString();
 
-            Console.WriteLine();
-            Console.WriteLine("Player X saved, press any key to continue.");
-            Console.ReadKey();
-
             Console.WriteLine("Enter Player O's Name: ");
             string playerOName = Console.ReadLine();
 
+            StringBuilder sb2 = new StringBuilder();
             sb.Append(playerOName + Data.DataSettings.Delineator);
             sb.Append(playerOScore + Data.DataSettings.Delineator);
 
@@ -602,12 +588,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 //
                 // use StreamWriter to add data to file
                 //
-                StreamWriter sWriter = new StreamWriter(Data.DataSettings.DataFilePath, true);
+               // StreamWriter sWriter = new StreamWriter(DataSettings.DataFilePath, true);
 
-                using (sWriter)
-                {
-                    sWriter.WriteLine(playerData);
-                }
+               // using (sWriter)
+               // {
+                //    sWriter.WriteLine(playerData);
+               // }
             }
             catch (Exception)
             {
@@ -615,7 +601,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 throw;
             }
         }
-
 
         /// <summary>
         /// display new round prompt
@@ -864,7 +849,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleKeyInfo info = Console.ReadKey();
             if (info.Key == ConsoleKey.Escape)
             {
-                DisplayExitPrompt();
+                DisplayGetYesNoSaveGamePrompt();
             }
 
 
