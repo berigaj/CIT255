@@ -34,8 +34,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         private Gameboard _gameboard;
         private ViewState _currentViewStat;
-        private Gameboard.PlayerPiece PlayerPiece;
-        private Gameboard.GameboardState PlayerState;
 
         private static int roundsPlayed;
         private static int playerXWins;
@@ -171,82 +169,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             DisplayMessageBox("It appears your session has timed out.");
 
             DisplayContinuePrompt();
-        }
-
-        /// <summary>
-        /// displays the who goes first method
-        /// </summary>
-        public Gameboard.PlayerPiece DisplayGetFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
-        {
-            Console.CursorVisible = false;
-
-            int playerFirstChoice;
-
-            // asks the player who wants to go first
-            ConsoleUtil.HeaderText = "Who Goes First?";
-            ConsoleUtil.DisplayReset();
-
-            Console.WriteLine(ConsoleUtil.Center("A. Player X"));
-            Console.WriteLine(ConsoleUtil.Center("B. Player O"));
-            Console.WriteLine(ConsoleUtil.Center("C. Let Us Decide"));
-
-            int numOfPlayerAttempts = 0;
-            int maxNumOfPlayerAttempts = 3;
-
-            while ((numOfPlayerAttempts <= maxNumOfPlayerAttempts))
-            {
-                ConsoleKeyInfo response = Console.ReadKey();
-
-                if (response.Key == ConsoleKey.A)
-                {
-                    PlayerState = Gameboard.GameboardState.PlayerXTurn;
-                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-                }
-                else if (response.Key == ConsoleKey.B)
-                {
-                    PlayerState = Gameboard.GameboardState.PlayerOTurn;
-                    DisplayFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
-                }
-                else if (response.Key == ConsoleKey.C)
-                {
-                    Random rnd = new Random();
-                    int choice = rnd.Next(1, 3);
-                    if (choice == 1)
-                    {
-                        PlayerState = Gameboard.GameboardState.PlayerXTurn;
-                        DisplayFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
-                    else
-                    {
-                        PlayerState = Gameboard.GameboardState.PlayerOTurn;
-                        DisplayFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("You have pressed an incorrect key!");
-                    numOfPlayerAttempts++;
-                }
-
-            }
-
-
-            _gameController.DisplayExitPrompt();
-            return PlayerPiece;
-
-        }
-
-        public void DisplayFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
-        {
-            //if (Convert.ToBoolean(PlayerPiece = Gameboard.PlayerPiece.X))
-            //{
-            //    PlayerState = Gameboard.GameboardState.PlayerXTurn;
-            //    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
-            //}
-            //else
-            //{
-            //    DisplayExitPrompt();
-            //}
         }
 
         /// <summary>
