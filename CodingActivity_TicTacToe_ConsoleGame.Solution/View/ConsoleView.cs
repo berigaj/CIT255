@@ -415,17 +415,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         }
 
         /// <summary>
-        /// display a list of historic score
-        /// </summary>
-        /// <param name="historicScores"></param>
-        private static void DisplayHistoricScores(List<HistoricScore> historicScores)
-        {
-            Console.WriteLine("List of Historical Scores");
-
-            DisplayContinuePrompt();
-        }
-
-        /// <summary>
         /// prompts to save player scores to history
         /// </summary>
         private static string DisplaySavePlayerHistory(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)

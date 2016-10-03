@@ -410,14 +410,25 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         }
 
         /// <summary>
+        /// display a list of historic score
+        /// </summary>
+        /// <param name="historicScores"></param>
+        private void DisplayHistoricScores(List<Model.HistoricScore> historicScores)
+        {
+            Console.WriteLine("List of Historical Scores");
+
+            _gameView.DisplayContinuePrompt();
+        }
+
+        /// <summary>
         /// Read all historic player scores
         /// </summary>
         /// <returns>list of historic scores</returns>
-        private static List<HistoricScore> ReadPlayerHistory()
+        private static List<Model.HistoricScore> ReadPlayerHistory()
         {
             const char delineator = ','; // delineator in a CSV file
 
-            List<HistoricScore> historicScores = new List<HistoricScore>();
+            List<Model.HistoricScore> historicScores = new List<Model.HistoricScore>();
 
             //
             // create lists to hold the historic score strings
