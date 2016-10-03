@@ -37,6 +37,14 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         private Gameboard.PlayerPiece PlayerPiece;
         private Gameboard.GameboardState PlayerState;
 
+        private static int roundsPlayed;
+        private static int playerXWins;
+        private static int playerOWins;
+        private static int catsGames;
+
+
+        private GameController _gameController = new GameController(roundsPlayed, playerXWins, playerOWins, catsGames);
+
         #endregion
 
         #region PROPERTIES
@@ -223,7 +231,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
 
 
-            DisplayExitPrompt();
+            _gameController.DisplayExitPrompt();
             return PlayerPiece;
 
         }
@@ -303,11 +311,11 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleKeyInfo info = Console.ReadKey();
             if (info.Key == ConsoleKey.Escape)
             {
-                DisplayExitPrompt();
+                _gameController.DisplayExitPrompt();
             }
             else if (info.Key == ConsoleKey.Enter)
             {
-                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                _gameController.DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
 
         }
@@ -365,7 +373,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             if (response.Key == ConsoleKey.Enter)
             {
-                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                _gameController.DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
 
 
@@ -400,7 +408,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             if (response.Key == ConsoleKey.Enter)
             {
-                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                _gameController.DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
 
 
@@ -499,7 +507,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                     if (response.Key == ConsoleKey.Enter)
                     {
-                        DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                        _gameController.DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                     Console.CursorVisible = true;
                     break;
@@ -511,7 +519,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                     if (playerrepsonse.Key == ConsoleKey.Enter)
                     {
-                        DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                        _gameController.DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                     Console.CursorVisible = true;
                     break;
@@ -523,7 +531,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                     if (myresponse.Key == ConsoleKey.Enter)
                     {
-                        DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                        _gameController.DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                     Console.CursorVisible = true;
                     break;
@@ -640,7 +648,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 {
                     validResponse = true;
                     yesNoChoice = false;
-                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    _gameController.DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else
                 {
