@@ -73,13 +73,162 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             _gameboard.InitializeGameboard();
         }
 
+        /// <summary>
+        /// display the welcome screen
+        /// </summary>
+        public void DisplayWelcomeScreen(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            ConsoleUtil.HeaderText = "The Tic-Tac-Toe Game";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine(ConsoleUtil.Center("Written by Jen Berigan and Alex Briggs"));
+            Console.WriteLine(ConsoleUtil.Center("Northwestern Michigan College"));
+            Console.WriteLine(ConsoleUtil.Center("Version: Sprint 2"));
+            Console.WriteLine();
+
+            sb.Clear();
+            sb.AppendFormat(ConsoleUtil.Center("This application is designed to allow two players to play a game of tic-tac-toe. Though there's a bit of a twist...we have a 4x4 gameboard"));
+            ConsoleUtil.DisplayMessage(sb.ToString());
+            Console.WriteLine();
+            Console.WriteLine();
+
+            sb.Clear();
+            Console.WriteLine(ConsoleUtil.Center("Press ESC key at anytime to exit."));
+            ConsoleUtil.DisplayMessage(sb.ToString());
+            Console.WriteLine();
+
+            int numOfPlayerAttempts = 0;
+            int maxNumOfPlayerAttempts = 3;
+
+            // While loop validates the choice of enter, escape, or any wrong key
+            bool playGame = false;
+            while (numOfPlayerAttempts <= maxNumOfPlayerAttempts && !playGame)
+            {
+                ConsoleKeyInfo info = Console.ReadKey();
+
+                if (info.Key == ConsoleKey.Escape)
+                {
+                    DisplayExitPrompt();
+                }
+                else if (info.Key == ConsoleKey.Enter)
+                {
+                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                }
+                else
+                {
+                    Console.WriteLine("\t\t That was an invalid answer, please try again!");
+                    numOfPlayerAttempts++;
+                }
+
+
+            }
+
+            if (!playGame)
+            {
+                DisplayExitPrompt();
+            }
+            else
+            {
+
+            }
+
+        }
+
+        /// <summary>
+        /// display the Exit prompt on a clean screen
+        /// </summary>
+        public void DisplayExitPrompt()
+        {
+            ConsoleUtil.DisplayReset();
+
+            Console.CursorVisible = false;
+
+            Console.WriteLine();
+            Console.Write("\t\t Thank you for playing the game. Press any key to Exit.");
+
+            Console.ReadKey();
+
+            System.Environment.Exit(1);
+        }
+
+        /// <summary>
+        /// display the MainMenu screen
+        /// </summary>
+        public void DisplayMainMenu(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        {
+            Console.Clear();
+
+            Console.CursorVisible = false;
+
+            ConsoleUtil.HeaderText = "The Tic-Tac-Toe Game";
+            ConsoleUtil.DisplayReset();
+
+
+            Console.WriteLine(ConsoleUtil.Center("A. Play a New Round"));
+            Console.WriteLine(ConsoleUtil.Center("B. View Rules"));
+            Console.WriteLine(ConsoleUtil.Center("C. View Current Game Stats"));
+            Console.WriteLine(ConsoleUtil.Center("D. View Historic Game Stats"));
+            Console.WriteLine(ConsoleUtil.Center("E. Save Game Results"));
+            Console.WriteLine(ConsoleUtil.Center("F. Quit"));
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(ConsoleUtil.Center("Enter a letter to go to that screen"));
+
+            Console.WriteLine();
+
+            Console.CursorVisible = true;
+
+            int numOfPlayerAttempts = 0;
+            int maxNumOfPlayerAttempts = 3;
+
+            // while (numOfPlayerAttempts <= maxNumOfPlayerAttempts)
+            // {
+            ConsoleKeyInfo response = Console.ReadKey();
+
+            if (response.Key == ConsoleKey.A)
+            {
+               _gameView.DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+            }
+            else if (response.Key == ConsoleKey.B)
+            {
+                _gameView.DisplayRulesScreen(roundsPlayed, playerXWins, playerOWins, catsGames);
+            }
+            else if (response.Key == ConsoleKey.C)
+            {
+                _gameView.DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
+            }
+            else if (response.Key == ConsoleKey.D)
+            {
+                _gameView.DisplayHistoricGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
+            }
+            else if (response.Key == ConsoleKey.E)
+            {
+                _gameView.DisplayGetYesNoSaveGamePrompt();
+            }
+            else if (response.Key == ConsoleKey.F)
+            {
+                DisplayExitPrompt();
+            }
+            else
+            {
+                Console.WriteLine("\t\t That was an invalid key, please try again!");
+                // numOfPlayerAttempts++;
+            }
+
+
+            // }
+
+            // DisplayExitPrompt();
+        }
 
         /// <summary>
         /// Game Loop
         /// </summary>
         public void PlayGame(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
-            _gameView.DisplayWelcomeScreen(roundsPlayed, playerXWins, playerOWins, catsGames);
+            DisplayWelcomeScreen(roundsPlayed, playerXWins, playerOWins, catsGames);
 
             while (_playingGame)
             {
