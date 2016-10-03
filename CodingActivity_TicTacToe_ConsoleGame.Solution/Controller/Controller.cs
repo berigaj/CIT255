@@ -25,6 +25,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         private int _playerONumberOfWins;
         private int _numberOfCatsGames;
 
+
         //
         // instantiate  a Gameboard object
         // instantiate a GameView object and give it access to the Gameboard object
@@ -108,21 +109,16 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             {
                 ConsoleKeyInfo info = Console.ReadKey();
 
-                if (info.Key == ConsoleKey.Escape)
+                
+                if (info.Key == ConsoleKey.Enter)
                 {
-                    DisplayExitPrompt();
-                }
-                else if (info.Key == ConsoleKey.Enter)
-                {
-                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    playGame = true;
                 }
                 else
                 {
                     Console.WriteLine("\t\t That was an invalid answer, please try again!");
                     numOfPlayerAttempts++;
                 }
-
-
             }
 
             if (!playGame)
@@ -131,7 +127,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
             else
             {
-
+                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
 
         }

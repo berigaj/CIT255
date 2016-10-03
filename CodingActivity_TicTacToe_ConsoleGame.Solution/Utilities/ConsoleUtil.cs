@@ -77,7 +77,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         public static ConsoleColor HeaderForegroundColor
         {
-            get { return _headerForegroundColor = ConsoleColor.Red; }
+            get { return _headerForegroundColor = ConsoleColor.Blue; }
             set { _headerForegroundColor = value; }
         }
 
@@ -89,7 +89,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         public static ConsoleColor BodyForegroundColor
         {
-            get { return _bodyForegroundColor = ConsoleColor.Red; }
+            get { return _bodyForegroundColor = ConsoleColor.Blue; }
             set { _bodyForegroundColor = value; }
         }
         
