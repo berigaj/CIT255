@@ -638,12 +638,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             return yesNoChoice;
         }
-        /// <summary>
-        /// Display a Yes or No prompt with a message
-        /// </summary>
-        /// <param name="promptMessage">prompt message</param>
-        /// <returns>bool where true = yes</returns>
-
+        
         /// <summary>
         /// Get a player's position choice within the correct range of the array
         /// Note: The ConsoleView is allowed access to the GameboardPosition struct.
