@@ -35,6 +35,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         private Gameboard _gameboard;
         private ViewState _currentViewStat;
 
+        public MenuOption menuOption;
+
         #endregion
 
         #region PROPERTIES
@@ -133,6 +135,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// </summary>
         public void DisplayMainMenu(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
+            string userResponse;
+
             Console.Clear();
 
             Console.CursorVisible = false;
@@ -141,46 +145,63 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.DisplayReset();
 
 
-            Console.WriteLine(ConsoleUtil.Center("A. Play a New Round"));
-            Console.WriteLine(ConsoleUtil.Center("B. View Rules"));
-            Console.WriteLine(ConsoleUtil.Center("C. View Current Game Stats"));
-            Console.WriteLine(ConsoleUtil.Center("D. View Historic Game Stats"));
-            Console.WriteLine(ConsoleUtil.Center("E. Save Game Results"));
-            Console.WriteLine(ConsoleUtil.Center("F. Quit"));
+            Console.WriteLine(ConsoleUtil.Center("1. Play a New Round"));
+            Console.WriteLine(ConsoleUtil.Center("2. View Rules"));
+            Console.WriteLine(ConsoleUtil.Center("3. View Current Game Stats"));
+            Console.WriteLine(ConsoleUtil.Center("4. View Historic Game Stats"));
+            Console.WriteLine(ConsoleUtil.Center("5. Save Game Results"));
+            Console.WriteLine(ConsoleUtil.Center("6. Quit"));
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine(ConsoleUtil.Center("Enter a letter to go to that screen"));
-            ConsoleKeyInfo response = Console.ReadKey();
+            Console.WriteLine(ConsoleUtil.Center("Enter a number to go to that screen"));
 
             Console.WriteLine();
-
+     
             Console.CursorVisible = true;
 
 
-            if (response.Key == ConsoleKey.A)
+            userResponse = Console.ReadLine();
+            menuOption = (MenuOption)Enum.Parse(typeof(MenuOption), userResponse);
+
+            // thing in here is what we test
+            switch (userResponse)
             {
-                Console.Clear();
-                ChooseFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
+                case ("1"):
+                    Console.Clear();
+                    ChooseFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    break;
+                case ("2"):
+                    DisplayRulesScreen(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    break;
+                case ("3"):
+                    DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    break;
+                case ("4"):
+                    DisplayHistoricGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    break;
+                case ("5"):
+                    DisplayExitPrompt();
+                    break;
+                default:
+                    break;
             }
-            else if (response.Key == ConsoleKey.B)
+
+            switch (menuOption)
             {
-                DisplayRulesScreen(roundsPlayed, playerXWins, playerOWins, catsGames);
-            }
-            else if (response.Key == ConsoleKey.C)
-            {
-                DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
-            }
-            else if (response.Key == ConsoleKey.D)
-            {
-                DisplayHistoricGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
-            }
-            else if (response.Key == ConsoleKey.E)
-            {
-                DisplaySaveGameScreen();
-            }
-            else if (response.Key == ConsoleKey.F)
-            {
-                DisplayExitPrompt();
+                case MenuOption.None:
+                    break;
+                case MenuOption.ChooseFirstPlayer:
+                    break;
+                case MenuOption.ViewRules:
+                    break;
+                case MenuOption.ViewCurrentGameResults:
+                    break;
+                case MenuOption.ViewHistoricGameStats:
+                    break;
+                case MenuOption.Quit:
+                    break;
+                default:
+                    break;
             }
 
         }
@@ -317,7 +338,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             {
                 ConsoleKeyInfo info = Console.ReadKey();
 
-
                 if (info.Key == ConsoleKey.Enter)
                 {
                     playGame = true;
@@ -446,25 +466,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         {
             ConsoleUtil.HeaderText = "Historic Game Status";
             ConsoleUtil.DisplayReset();
-
-            double playerXPercentageWins = (double)playerXWins / roundsPlayed;
-            double playerOPercentageWins = (double)playerOWins / roundsPlayed;
-            double percentageOfCatsGames = (double)catsGames / roundsPlayed;
-
-            ConsoleUtil.DisplayMessage("Rounds Played: " + roundsPlayed);
-            ConsoleUtil.DisplayMessage("Rounds for Player X: " + playerXWins + " - " + String.Format("{0:P2}", playerXPercentageWins));
-            ConsoleUtil.DisplayMessage("Rounds for Player O: " + playerOWins + " - " + String.Format("{0:P2}", playerOPercentageWins));
-            ConsoleUtil.DisplayMessage("Cat's Games: " + catsGames + " - " + String.Format("{0:P2}", percentageOfCatsGames));
-
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.Write("\t Press Enter to go back to Main Menu");
-            ConsoleKeyInfo response = Console.ReadKey();
-
-            if (response.Key == ConsoleKey.Enter)
-            {
-                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
-            }
 
 
         }

@@ -9,10 +9,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
     public enum MenuOption
     {
         None,
-        PlayNewRound,
+        ChooseFirstPlayer,
+        ViewRules,
         ViewCurrentGameResults,
-        ViewPastGameResultsScores,
-        SaveGameResults,
+        ViewHistoricGameStats,
         Quit
     }
 }
