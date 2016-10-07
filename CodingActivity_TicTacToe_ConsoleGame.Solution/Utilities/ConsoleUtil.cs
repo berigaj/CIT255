@@ -25,11 +25,11 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         private static string _headerText = "- set header text -";
 
-        private static ConsoleColor _headerBackgroundColor = ConsoleColor.White;
-        private static ConsoleColor _headerForegroundColor = ConsoleColor.Blue;
+        private static ConsoleColor _headerBackgroundColor = ConsoleColor.Cyan;
+        private static ConsoleColor _headerForegroundColor = ConsoleColor.Black;
 
-        private static ConsoleColor _bodyBackgroundColor = ConsoleColor.White;
-        private static ConsoleColor _bodyForegroundColor = ConsoleColor.Blue;
+        private static ConsoleColor _bodyBackgroundColor = ConsoleColor.DarkMagenta;
+        private static ConsoleColor _bodyForegroundColor = ConsoleColor.White;
 
         private static string _windowTitle = " - set window title - ";
 
@@ -71,25 +71,25 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         
         public static ConsoleColor HeaderBackgroundColor
         {
-            get { return _headerBackgroundColor = ConsoleColor.White; }
+            get { return _headerBackgroundColor = ConsoleColor.Cyan; }
             set { _headerBackgroundColor = value; }
         }
 
         public static ConsoleColor HeaderForegroundColor
         {
-            get { return _headerForegroundColor = ConsoleColor.Red; }
+            get { return _headerForegroundColor = ConsoleColor.Black; }
             set { _headerForegroundColor = value; }
         }
 
         public static ConsoleColor BodyBackgroundColor
         {
-            get { return _bodyBackgroundColor = ConsoleColor.White; }
+            get { return _bodyBackgroundColor = ConsoleColor.DarkMagenta; }
             set { _bodyBackgroundColor = value; }
         }
 
         public static ConsoleColor BodyForegroundColor
         {
-            get { return _bodyForegroundColor = ConsoleColor.Red; }
+            get { return _bodyForegroundColor = ConsoleColor.White; }
             set { _bodyForegroundColor = value; }
         }
         
