@@ -235,6 +235,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             _positionState[gameboardPosition.Row - 1, gameboardPosition.Column - 1] = PlayerPiece;
 
+
             //
             // Change game board state to next player
             //

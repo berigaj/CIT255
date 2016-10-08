@@ -37,6 +37,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         public MenuOption menuOption;
 
+        ConsoleKeyInfo escapingGame;
+
+
         #endregion
 
         #region PROPERTIES
@@ -623,9 +626,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.Write("Enter " + coordinateType + " number: ");
 
 
-
         }
 
+        /// <summary>
+        /// Display a Yes or No prompt with a message
+        /// </summary>
+        /// <param name="promptMessage">prompt message</param>
+        /// <returns>bool where true = yes</returns>
         private bool DisplayGetYesNoPrompt(string promptMessage, int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             bool yesNoChoice = false;
@@ -662,11 +669,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             return yesNoChoice;
         }
-        /// <summary>
-        /// Display a Yes or No prompt with a message
-        /// </summary>
-        /// <param name="promptMessage">prompt message</param>
-        /// <returns>bool where true = yes</returns>
 
         /// <summary>
         /// Get a player's position choice within the correct range of the array
@@ -680,6 +682,11 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             GameboardPosition gameboardPosition = new GameboardPosition(-1, -1);
 
+            ConsoleKeyInfo escapingGame = Console.ReadKey();
+            if (escapingGame.Key == ConsoleKey.Escape)
+            {
+                DisplayExitPrompt();
+            }
             //
             // Get row number from player.
             //
@@ -711,13 +718,17 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             int numOfPlayerAttempts = 1;
             int maxNumOfPlayerAttempts = 4;
 
+
+
+
             while ((numOfPlayerAttempts <= maxNumOfPlayerAttempts))
             {
                 DisplayPositionPrompt(coordinateType);
 
                 if (int.TryParse(Console.ReadLine(), out tempCoordinate))
                 {
-                    
+
+
                     //
                     // Player response within range
                     //
