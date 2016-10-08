@@ -563,7 +563,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             Console.WriteLine(Environment.NewLine + leftMargin + topBottom);
 
-            Console.WriteLine(ConsoleUtil.Center("Press ESC key at anytime to exit."));
+            Console.WriteLine(ConsoleUtil.Center("Press ESC key at anytime to exit. Press Enter to continue."));
 
         }
 
@@ -597,12 +597,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
 
                 Console.Write("\n\t\t\t        |---+---+---+---|\n");
-
-                //if (Console.ReadKey().Key == ConsoleKey.Escape)
-                //{
-                //    DisplayExitPrompt();
-                //}
-
             }
 
 
@@ -766,9 +760,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             CurrentViewState = ViewState.PlayerUsedMaxAttempts;
             return tempCoordinate;
         }
-
-
-
 
         #endregion
     }
