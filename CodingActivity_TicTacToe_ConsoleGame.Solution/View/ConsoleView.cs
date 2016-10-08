@@ -156,7 +156,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.WriteLine(ConsoleUtil.Center("Enter a number to go to that screen"));
 
             Console.WriteLine();
-     
+
             Console.CursorVisible = true;
 
 
@@ -466,8 +466,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         {
             ConsoleUtil.HeaderText = "Historic Game Status";
             ConsoleUtil.DisplayReset();
-
-
         }
 
         /// <summary>
@@ -719,6 +717,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                 if (int.TryParse(Console.ReadLine(), out tempCoordinate))
                 {
+                    
                     //
                     // Player response within range
                     //
