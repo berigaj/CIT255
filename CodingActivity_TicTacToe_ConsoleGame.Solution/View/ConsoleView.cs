@@ -127,14 +127,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         }
 
         /// <summary>
-        /// display the save game screen
-        /// </summary>
-        public void DisplaySaveGameScreen()
-        {
-
-        }
-
-        /// <summary>
         /// display the MainMenu prompt
         /// </summary>
         public void DisplayMainMenu(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
@@ -499,143 +491,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         }
 
         /// <summary>
-        /// display a list of historic score
-        /// </summary>
-        /// <param name="historicScores"></param>
-        private void DisplayHistoricGameStatus(List<Model.PlayerScores> historicScores)
-        {
-            ConsoleUtil.HeaderText = "List of Historical Scores";
-
-            DisplayContinuePrompt();
-        }
-
-        /// <summary>
-        /// display prompts to save game scores
-        /// </summary>
-        /// <returns>string to write line to text file</returns>
-        private static string GetPlayerHistory(int roundsPlayed, int playerXWins, int playerOWins)
-        {
-            //
-            // get player name and score
-            //
-            Console.Write("Enter player X's name: ");
-            string playerXName = Console.ReadLine();
-            int playerXScore = roundsPlayed * playerXWins;
-            
-            Console.Write("Enter the player O's name: ");
-            string playerOName = Console.ReadLine();
-            int playerOScore = roundsPlayed * playerOWins;
-
-            //
-            // generate the record string for the data file using the 
-            // StringBuilder class
-            //
-            StringBuilder sb = new StringBuilder();
-            sb.Append(playerXName + Data.DataSettings.Delineator);
-            sb.Append(playerXScore + Data.DataSettings.Delineator);
-            sb.Append(playerOName + Data.DataSettings.Delineator);
-            sb.Append(playerOScore + Data.DataSettings.Delineator);
-
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// write player history to text file
-        /// </summary>
-        /// <param name="playerHistory">string that is the line to write to the text file</param>
-        private static void WritePlayerHistory(string playerHistory)
-        {
-            try
-            {
-                //
-                // initialize a StreamWriter object for writing to a file
-                //
-                StreamWriter sWriter = new StreamWriter(Data.DataSettings.DataFilePath, true);
-
-                //
-                // read all data from the data file
-                //
-                using (sWriter)
-                {
-                    sWriter.WriteLine(playerHistory);
-                }
-
-            }
-            //
-            // an I/O error was encountered
-            //
-            catch (Exception)
-            {
-
-            }
-        }
-
-        /// <summary>
-        /// Read all historic player scores
-        /// </summary>
-        /// <returns>list of historic scores</returns>
-        private static List<Model.PlayerScores> ReadPlayerHistory()
-        {
-            const char delineator = ','; // delineator in a CSV file
-
-            List<Model.PlayerScores> historicScores = new List<Model.PlayerScores>();
-
-            //
-            // create lists to hold the historic score strings
-            //
-            List<string> historicScoresStringList = new List<string>();
-
-            try
-            {
-                //
-                // initialize a StreamReader object for reading from a file
-                //
-                StreamReader sReader = new StreamReader(Data.DataSettings.DataFilePath);
-
-                //
-                // read all data from the data file
-                //
-                using (sReader)
-                {
-                    //
-                    // keep reading lines of text until the end of the file is reached
-                    //
-                    while (!sReader.EndOfStream)
-                    {
-                        historicScoresStringList.Add(sReader.ReadLine());
-                    }
-                }
-
-            }
-            //
-            // an I/O error was encountered
-            //
-            catch (Exception)
-            {
-
-            }
-
-            //
-            // separate each line of text from the file into HistoricScore objects
-            //
-            if (historicScoresStringList != null)
-            {
-                //
-                // separate lines into fields and build out the list of historic scores
-                //
-                foreach (string historicScore in historicScoresStringList)
-                {
-                    string[] fields = historicScore.Split(delineator);
-
-                    historicScores.Add(new Model.PlayerScores() { PlayerXName = fields[0], PlayerXWins = Convert.ToInt32(fields[1]), PlayerOName = fields[2], PlayerOWins = Convert.ToInt32(fields[3]) });
-
-                }
-            }
-
-            return historicScores;
-        }
-
-        /// <summary>
         /// display new round prompt
         /// </summary>
         public bool DisplayNewRoundPrompt()
@@ -924,6 +779,144 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             CurrentViewState = ViewState.PlayerUsedMaxAttempts;
             return tempCoordinate;
         }
+
+        /// <summary>
+        /// display a list of historic score
+        /// </summary>
+        /// <param name="historicScores"></param>
+        private void DisplayHistoricGameStatus(List<Model.PlayerScores> historicScores)
+        {
+            ConsoleUtil.HeaderText = "List of Historical Scores";
+
+            DisplayContinuePrompt();
+        }
+
+        /// <summary>
+        /// display prompts to save game scores
+        /// </summary>
+        /// <returns>string to write line to text file</returns>
+        private static string GetPlayerHistory(int roundsPlayed, int playerXWins, int playerOWins)
+        {
+            //
+            // get player name and score
+            //
+            Console.Write("Enter player X's name: ");
+            string playerXName = Console.ReadLine();
+            int playerXScore = roundsPlayed * playerXWins;
+
+            Console.Write("Enter the player O's name: ");
+            string playerOName = Console.ReadLine();
+            int playerOScore = roundsPlayed * playerOWins;
+
+            //
+            // generate the record string for the data file using the 
+            // StringBuilder class
+            //
+            StringBuilder sb = new StringBuilder();
+            sb.Append(playerXName + Data.DataSettings.Delineator);
+            sb.Append(playerXScore + Data.DataSettings.Delineator);
+            sb.Append(playerOName + Data.DataSettings.Delineator);
+            sb.Append(playerOScore + Data.DataSettings.Delineator);
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// write player history to text file
+        /// </summary>
+        /// <param name="playerHistory">string that is the line to write to the text file</param>
+        private static void WritePlayerHistory(string playerHistory)
+        {
+            try
+            {
+                //
+                // initialize a StreamWriter object for writing to a file
+                //
+                StreamWriter sWriter = new StreamWriter(Data.DataSettings.DataFilePath, true);
+
+                //
+                // read all data from the data file
+                //
+                using (sWriter)
+                {
+                    sWriter.WriteLine(playerHistory);
+                }
+
+            }
+            //
+            // an I/O error was encountered
+            //
+            catch (Exception)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// Read all historic player scores
+        /// </summary>
+        /// <returns>list of historic scores</returns>
+        private static List<Model.PlayerScores> ReadPlayerHistory()
+        {
+            const char delineator = ','; // delineator in a CSV file
+
+            List<Model.PlayerScores> historicScores = new List<Model.PlayerScores>();
+
+            //
+            // create lists to hold the historic score strings
+            //
+            List<string> historicScoresStringList = new List<string>();
+
+            try
+            {
+                //
+                // initialize a StreamReader object for reading from a file
+                //
+                StreamReader sReader = new StreamReader(Data.DataSettings.DataFilePath);
+
+                //
+                // read all data from the data file
+                //
+                using (sReader)
+                {
+                    //
+                    // keep reading lines of text until the end of the file is reached
+                    //
+                    while (!sReader.EndOfStream)
+                    {
+                        historicScoresStringList.Add(sReader.ReadLine());
+                    }
+                }
+
+            }
+            //
+            // an I/O error was encountered
+            //
+            catch (Exception)
+            {
+
+            }
+
+            //
+            // separate each line of text from the file into HistoricScore objects
+            //
+            if (historicScoresStringList != null)
+            {
+                //
+                // separate lines into fields and build out the list of historic scores
+                //
+                foreach (string historicScore in historicScoresStringList)
+                {
+                    string[] fields = historicScore.Split(delineator);
+
+                    historicScores.Add(new Model.PlayerScores() { PlayerXName = fields[0], PlayerXWins = Convert.ToInt32(fields[1]), PlayerOName = fields[2], PlayerOWins = Convert.ToInt32(fields[3]) });
+
+                }
+            }
+
+            return historicScores;
+        }
+
 
         #endregion
     }
