@@ -455,8 +455,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                
             }
 
-
-
         }
 
         /// <summary>
@@ -564,7 +562,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             Console.WriteLine(Environment.NewLine + leftMargin + topBottom);
 
-            Console.WriteLine(ConsoleUtil.Center("Press ESC key at anytime to exit. Press Enter to continue."));
+            Console.WriteLine(ConsoleUtil.Center("DIRECTIONS: Press ESC key at anytime to exit. Press Enter to make a selection"));
 
         }
 
