@@ -778,11 +778,11 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             Console.Write("Enter player X's name: ");
             string playerXName = Console.ReadLine();
-            int playerXScore = roundsPlayed * playerXWins;
+            int playerXScore = (roundsPlayed * playerXWins);
 
             Console.Write("Enter the player O's name: ");
             string playerOName = Console.ReadLine();
-            int playerOScore = roundsPlayed * playerOWins;
+            int playerOScore = (roundsPlayed * playerOWins);
 
             //
             // generate the record string for the data file using the 

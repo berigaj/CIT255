@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\CodingActivity_TicTacToe_ConsoleGame.vshost.exe" />
+    <Content Include="bin\Debug\Data\PlayerHistory.txt" />
     <Content Include="Data\PlayerHistory.txt" />
     <Content Include="ReadMe.txt" />
   </ItemGroup>
