@@ -631,6 +631,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 {
                     validResponse = true;
                     yesNoChoice = false;
+
+                    DisplayMainMenu();
                 }
                 else
                 {
