@@ -498,7 +498,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.HeaderText = "Continue or Quit";
             ConsoleUtil.DisplayReset();
 
-            return DisplayGetYesNoPrompt("Would you like to play another round?", 0, 0, 0, 0);
+            return DisplayGetYesNoPrompt("Would you like to play another round?",);
         }
 
         /// <summary>
@@ -522,38 +522,38 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     DisplayMessageBox("It is currently Player O's turn.");
                     break;
                 case Gameboard.GameboardState.PlayerXWin:
-                    DisplayMessageBox("Player X Wins! Press Enter key to go to main.");
+                    DisplayMessageBox("Player X Wins! Press Enter key to continue.");
 
                     Console.CursorVisible = false;
                     ConsoleKeyInfo response = Console.ReadKey();
 
                     if (response.Key == ConsoleKey.Enter)
                     {
-                        DisplayNewRoundPrompt();
+                        DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                     Console.CursorVisible = true;
                     break;
                 case Gameboard.GameboardState.PlayerOWin:
-                    DisplayMessageBox("Player O Wins! Press Enter key to go to main menu.");
+                    DisplayMessageBox("Player O Wins! Press Enter key to continue");
 
                     Console.CursorVisible = false;
                     ConsoleKeyInfo playerrepsonse = Console.ReadKey();
 
                     if (playerrepsonse.Key == ConsoleKey.Enter)
                     {
-                        DisplayNewRoundPrompt();
+                        DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                     Console.CursorVisible = true;
                     break;
                 case Gameboard.GameboardState.CatsGame:
-                    DisplayMessageBox("Cat's Game! Press Enter key to go to main menu.");
+                    DisplayMessageBox("Cat's Game! Press Enter key to go to continue.");
 
                     Console.CursorVisible = false;
                     ConsoleKeyInfo myresponse = Console.ReadKey();
 
                     if (myresponse.Key == ConsoleKey.Enter)
                     {
-                        DisplayNewRoundPrompt();
+                        DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
                     }
                     Console.CursorVisible = true;
                     break;
@@ -713,10 +713,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 gameboardPosition.Column = PlayerCoordinateChoice("Column");
             }
 
-
-
             return gameboardPosition;
-
 
         }
 
