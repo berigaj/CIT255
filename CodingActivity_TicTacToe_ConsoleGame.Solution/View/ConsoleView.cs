@@ -133,8 +133,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         {
             string userResponse;
 
-            Console.Clear();
-
             Console.CursorVisible = false;
 
             ConsoleUtil.HeaderText = "The Tic-Tac-Toe Game";
@@ -525,36 +523,21 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     DisplayMessageBox("Player X Wins! Press Enter key to continue.");
 
                     Console.CursorVisible = false;
-                    ConsoleKeyInfo response = Console.ReadKey();
-
-                    if (response.Key == ConsoleKey.Enter)
-                    {
-                        DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
+                    
                     Console.CursorVisible = true;
                     break;
                 case Gameboard.GameboardState.PlayerOWin:
                     DisplayMessageBox("Player O Wins! Press Enter key to continue");
 
                     Console.CursorVisible = false;
-                    ConsoleKeyInfo playerrepsonse = Console.ReadKey();
-
-                    if (playerrepsonse.Key == ConsoleKey.Enter)
-                    {
-                        DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
+               
                     Console.CursorVisible = true;
                     break;
                 case Gameboard.GameboardState.CatsGame:
                     DisplayMessageBox("Cat's Game! Press Enter key to go to continue.");
 
                     Console.CursorVisible = false;
-                    ConsoleKeyInfo myresponse = Console.ReadKey();
-
-                    if (myresponse.Key == ConsoleKey.Enter)
-                    {
-                        DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
+                   
                     Console.CursorVisible = true;
                     break;
                 default:
