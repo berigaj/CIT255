@@ -769,6 +769,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <returns>string to write line to text file</returns>
         private static string GetPlayerHistory(int roundsPlayed, int playerXWins, int playerOWins)
         {
+            ConsoleUtil.HeaderText = "Save Game Stats";
+            ConsoleUtil.DisplayReset();
+
+            Console.WriteLine("Enter each player's name to save this session's stats.");
             //
             // get player name and score
             //
