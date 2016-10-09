@@ -245,7 +245,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             // {
             if (playerFirstChoice == 1)
             {
-                _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;
+                _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;              
                 DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
             }
             else if (playerFirstChoice == 2)
@@ -259,7 +259,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 int choice = rnd.Next(1, 3);
                 if (choice == 1)
                 {
-                    _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;
+                    _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;                 
                     DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else
@@ -451,7 +451,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             if (response.Key == ConsoleKey.Enter)
             {
-                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+               DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+               
             }
 
 
@@ -510,7 +511,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                     if (response.Key == ConsoleKey.Enter)
                     {
-                        DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                        DisplayNewRoundPrompt();
                     }
                     Console.CursorVisible = true;
                     break;
@@ -522,7 +523,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                     if (playerrepsonse.Key == ConsoleKey.Enter)
                     {
-                        DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                        DisplayNewRoundPrompt();
                     }
                     Console.CursorVisible = true;
                     break;
@@ -534,7 +535,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
                     if (myresponse.Key == ConsoleKey.Enter)
                     {
-                        DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                        DisplayNewRoundPrompt();
                     }
                     Console.CursorVisible = true;
                     break;
@@ -637,7 +638,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             {
                 ConsoleUtil.DisplayReset();
 
-                ConsoleUtil.DisplayPromptMessage(promptMessage + "(yes/no)");
+                ConsoleUtil.DisplayPromptMessage(ConsoleUtil.Center(promptMessage + "(yes/no)"));
                 userResponse = Console.ReadLine();
 
                 if (userResponse.ToUpper() == "YES")
@@ -653,10 +654,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 }
                 else
                 {
-                    ConsoleUtil.DisplayMessage(
+                    ConsoleUtil.DisplayMessage(ConsoleUtil.Center(
                         "It appears that you have entered an incorrect response." +
                         " Please enter either \"yes\" or \"no\"."
-                        );
+                        ));
                     DisplayContinuePrompt();
                 }
             }
