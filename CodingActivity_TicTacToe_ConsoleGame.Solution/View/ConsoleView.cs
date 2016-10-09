@@ -498,7 +498,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.HeaderText = "Continue or Quit";
             ConsoleUtil.DisplayReset();
 
-            return DisplayGetYesNoPrompt("Would you like to play another round?",);
+            return DisplayGetYesNoPrompt("Would you like to play another round?", 0,0,0,0);
         }
 
         /// <summary>
