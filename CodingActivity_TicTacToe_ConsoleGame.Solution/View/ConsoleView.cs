@@ -748,8 +748,19 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         private void DisplayHistoricGameStatus(List<Model.PlayerScores> historicScores)
         {
             ConsoleUtil.HeaderText = "List of Historical Scores";
+            ConsoleUtil.DisplayReset();
+
+            foreach (var historicScore in historicScores)
+            {
+                //
+                // note use of C# 6.0 string interpolation
+                //
+                Console.WriteLine($"{historicScore.PlayerXName} - {historicScore.PlayerXWins}, {historicScore.PlayerOName} - {historicScore.PlayerOWins}");
+            }
+
 
             DisplayContinuePrompt();
+            DisplayMainMenu();
         }
 
         /// <summary>
@@ -809,7 +820,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             catch (Exception)
             {
-
+                throw;
             }
         }
 
@@ -855,7 +866,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             catch (Exception)
             {
-
+                Console.WriteLine("There currently are no scores to display.");
             }
 
             //
@@ -871,7 +882,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     string[] fields = historicScore.Split(delineator);
 
                     historicScores.Add(new Model.PlayerScores() { PlayerXName = fields[0], PlayerXWins = Convert.ToInt32(fields[1]), PlayerOName = fields[2], PlayerOWins = Convert.ToInt32(fields[3]) });
-
                 }
             }
 
