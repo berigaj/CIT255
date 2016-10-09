@@ -36,9 +36,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         private Gameboard _gameboard;
         private ViewState _currentViewStat;
 
-        public MenuOption menuOption;
+        private int roundsPlayed;
+        private int playerXWins;
+        private int playerOWins;
+        private int catsGames;
 
-        ConsoleKeyInfo escapingGame;
+
+        public MenuOption menuOption;
 
 
         #endregion
@@ -49,8 +53,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             get { return _currentViewStat; }
             set { _currentViewStat = value; }
         }
-
-        public class Key { }
 
         #endregion
 
@@ -129,7 +131,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// display the MainMenu prompt
         /// </summary>
-        public void DisplayMainMenu(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public void DisplayMainMenu()
         {
             string userResponse;
 
@@ -164,10 +166,10 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             {
                 case ("1"):
                     Console.Clear();
-                    ChooseFirstPlayer(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    ChooseFirstPlayer();
                     break;
                 case ("2"):
-                    DisplayRulesScreen(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    DisplayRulesScreen();
                     break;
                 case ("3"):
                     DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
@@ -196,7 +198,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     break;
                 case ("5"):
                     string playerHistory;
-                    playerHistory = GetPlayerHistory(0,0,0);
+                    playerHistory = GetPlayerHistory(roundsPlayed, playerXWins, playerOWins);
 
                     //
                     // attempt to write to file
@@ -259,7 +261,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// displays the who goes first method
         /// </summary>
-        public void ChooseFirstPlayer(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public void ChooseFirstPlayer()
         {
             Console.CursorVisible = false;
 
@@ -280,12 +282,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             if (playerFirstChoice == 1)
             {
                 _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;              
-                DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                DisplayGameArea();
             }
             else if (playerFirstChoice == 2)
             {
                 _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerOTurn;
-                DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                DisplayGameArea();
             }
             else if (playerFirstChoice == 3)
             {
@@ -294,12 +296,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 if (choice == 1)
                 {
                     _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerXTurn;                 
-                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    DisplayGameArea();
                 }
                 else
                 {
                     _gameboard.CurrentRoundState = Gameboard.GameboardState.PlayerOTurn;
-                    DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    DisplayGameArea();
                 }
             }
         }
@@ -343,7 +345,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// display the welcome screen
         /// </summary>
-        public void DisplayWelcomeScreen(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public void DisplayWelcomeScreen()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -352,7 +354,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             Console.WriteLine(ConsoleUtil.Center("Written by Jen Berigan and Alex Briggs"));
             Console.WriteLine(ConsoleUtil.Center("Northwestern Michigan College"));
-            Console.WriteLine(ConsoleUtil.Center("Version: Sprint 2"));
+            Console.WriteLine(ConsoleUtil.Center("Version: Sprint 3"));
             Console.WriteLine();
 
             sb.Clear();
@@ -392,7 +394,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
             else
             {
-                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                DisplayMainMenu();
             }
 
         }
@@ -400,7 +402,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// display the rules screen
         /// </summary>
-        public void DisplayRulesScreen(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public void DisplayRulesScreen()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -410,7 +412,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             Console.WriteLine(ConsoleUtil.Center("This is tic-tac-toe with a twist."));
             Console.WriteLine(ConsoleUtil.Center("Instead of a 3x3 gameboard, we have a 4x4 gameboard."));
             Console.WriteLine();
-            Console.WriteLine(ConsoleUtil.Center("You can win by getting four up, down, diagonal, and four corners."));
+            Console.WriteLine(ConsoleUtil.Center("You can win by getting four up, down, and diagonal."));
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
@@ -427,7 +429,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             }
             else if (info.Key == ConsoleKey.Enter)
             {
-                DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
+                DisplayMainMenu();
             }
 
         }
@@ -445,25 +447,15 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             DisplayContinuePrompt();
         }
 
-        /// <summary>
-        /// display game area
-        /// </summary>
-        public void DisplayGameArea(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public void DisplayGameArea()
         {
             ConsoleUtil.HeaderText = "Current Game Board";
             ConsoleUtil.DisplayReset();
 
             DisplayGameboard();
-            DisplayGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
+            DisplayGameStatus();
         }
 
-        /// <summary>
-        /// displays the current game status
-        /// <param name="roundsPlayed"></param>
-        /// <param name="playerXWins"></param>
-        /// <param name="playerOWins"></param>
-        /// <param name="catsGames"></param>
-        /// </summary>
         public void DisplayCurrentGameStatus(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
         {
             ConsoleUtil.HeaderText = "Current Game Status";
@@ -478,33 +470,19 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             ConsoleUtil.DisplayMessage("Rounds for Player O: " + playerOWins + " - " + String.Format("{0:P2}", playerOPercentageWins));
             ConsoleUtil.DisplayMessage("Cat's Games: " + catsGames + " - " + String.Format("{0:P2}", percentageOfCatsGames));
 
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.Write("\t Press Enter to go back to Main Menu");
-            ConsoleKeyInfo response = Console.ReadKey();
-
-            if (response.Key == ConsoleKey.Enter)
-            {
-               DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
-               
-            }
+            DisplayContinuePrompt();
         }
 
-        /// <summary>
-        /// display new round prompt
-        /// </summary>
+
         public bool DisplayNewRoundPrompt()
         {
             ConsoleUtil.HeaderText = "Continue or Quit";
             ConsoleUtil.DisplayReset();
 
-            return DisplayGetYesNoPrompt("Would you like to play another round?", 0,0,0,0);
+            return DisplayGetYesNoPrompt("Would you like to play another round?");
         }
 
-        /// <summary>
-        /// display the game status screen
-        /// </summary>
-        public void DisplayGameStatus(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public void DisplayGameStatus()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -522,39 +500,24 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     DisplayMessageBox("It is currently Player O's turn.");
                     break;
                 case Gameboard.GameboardState.PlayerXWin:
-                    DisplayMessageBox("Player X Wins! Press Enter key to continue.");
+                    DisplayMessageBox("Player X Wins! Press any key to continue.");
 
                     Console.CursorVisible = false;
-                    ConsoleKeyInfo response = Console.ReadKey();
-
-                    if (response.Key == ConsoleKey.Enter)
-                    {
-                        DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
+                    Console.ReadKey();
                     Console.CursorVisible = true;
                     break;
                 case Gameboard.GameboardState.PlayerOWin:
-                    DisplayMessageBox("Player O Wins! Press Enter key to continue");
+                    DisplayMessageBox("Player O Wins! Press any key to continue.");
 
                     Console.CursorVisible = false;
-                    ConsoleKeyInfo playerrepsonse = Console.ReadKey();
-
-                    if (playerrepsonse.Key == ConsoleKey.Enter)
-                    {
-                        DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
+                    Console.ReadKey();
                     Console.CursorVisible = true;
                     break;
                 case Gameboard.GameboardState.CatsGame:
-                    DisplayMessageBox("Cat's Game! Press Enter key to go to continue.");
+                    DisplayMessageBox("Cat's Game! Press any key to continue.");
 
                     Console.CursorVisible = false;
-                    ConsoleKeyInfo myresponse = Console.ReadKey();
-
-                    if (myresponse.Key == ConsoleKey.Enter)
-                    {
-                        DisplayCurrentGameStatus(roundsPlayed, playerXWins, playerOWins, catsGames);
-                    }
+                    Console.ReadKey();
                     Console.CursorVisible = true;
                     break;
                 default:
@@ -646,7 +609,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// </summary>
         /// <param name="promptMessage">prompt message</param>
         /// <returns>bool where true = yes</returns>
-        private bool DisplayGetYesNoPrompt(string promptMessage, int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        private bool DisplayGetYesNoPrompt(string promptMessage)
         {
             bool yesNoChoice = false;
             bool validResponse = false;
@@ -656,7 +619,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             {
                 ConsoleUtil.DisplayReset();
 
-                ConsoleUtil.DisplayPromptMessage(ConsoleUtil.Center(promptMessage + "(yes/no)"));
+                ConsoleUtil.DisplayPromptMessage(promptMessage + "(yes/no)");
                 userResponse = Console.ReadLine();
 
                 if (userResponse.ToUpper() == "YES")
@@ -668,14 +631,13 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 {
                     validResponse = true;
                     yesNoChoice = false;
-                    DisplayMainMenu(roundsPlayed, playerXWins, playerOWins, catsGames);
                 }
                 else
                 {
-                    ConsoleUtil.DisplayMessage(ConsoleUtil.Center(
+                    ConsoleUtil.DisplayMessage(
                         "It appears that you have entered an incorrect response." +
                         " Please enter either \"yes\" or \"no\"."
-                        ));
+                        );
                     DisplayContinuePrompt();
                 }
             }

@@ -30,8 +30,6 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         //
         private static Gameboard _gameboard = new Gameboard();
         private static ConsoleView _gameView = new ConsoleView(_gameboard);
-        private int row;
-        private int column;
 
         #endregion
 
@@ -43,12 +41,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
         #region CONSTRUCTORS
 
-        public GameController(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public GameController()
         {
             InitializeGame();
-            PlayGame(roundsPlayed, playerXWins, playerOWins, catsGames);
+            PlayGame();
         }
-        
+
         #endregion
 
         #region METHODS
@@ -78,9 +76,9 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// Game Loop
         /// </summary>
-        public void PlayGame(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        public void PlayGame()
         {
-            _gameView.DisplayWelcomeScreen(roundsPlayed, playerXWins, playerOWins, catsGames);
+            _gameView.DisplayWelcomeScreen();
 
             while (_playingGame)
             {
@@ -92,31 +90,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     //
                     // Perform the task associated with the current game and round state
                     //
-                    ManageGameStateTasks(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    ManageGameStateTasks();
 
                     //
                     // Evaluate and update the current game board state
                     //
                     _gameboard.UpdateGameboardState();
-
-
-                    try
-                    {
- 
-                    }
-                    catch (Controller.PositionChoiceOutOfRangeException ex)
-                    {
-
-                        Console.WriteLine("I think you tried an illegal move!");
-                        Console.WriteLine(ex.Message);
-                    }
-
-                    catch (Controller.PoisitionChoiceAlreadyTakenException ex)
-                    {
-
-                        Console.WriteLine("That move is not allowed!");
-                        Console.WriteLine(ex.Message);
-                    }
                 }
 
                 //
@@ -155,12 +134,12 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         /// <summary>
         /// manage each new task based on the current game state
         /// </summary>
-        private void ManageGameStateTasks(int roundsPlayed, int playerXWins, int playerOWins, int catsGames)
+        private void ManageGameStateTasks()
         {
             switch (_gameView.CurrentViewState)
             {
                 case ConsoleView.ViewState.Active:
-                    _gameView.DisplayGameArea(roundsPlayed, playerXWins, playerOWins, catsGames);
+                    _gameView.DisplayGameArea();
 
                     switch (_gameboard.CurrentRoundState)
                     {

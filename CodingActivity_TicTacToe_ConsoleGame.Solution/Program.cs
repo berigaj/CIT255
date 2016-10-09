@@ -17,7 +17,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         static void Main(string[] args)
         {
             
-            GameController gameController = new GameController(roundsPlayed, playerXWins, playerOWins, catsGames);
+            GameController gameController = new GameController();
            
         }
     }
