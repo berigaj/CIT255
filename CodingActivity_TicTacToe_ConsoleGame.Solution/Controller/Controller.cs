@@ -30,6 +30,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
         //
         private static Gameboard _gameboard = new Gameboard();
         private static ConsoleView _gameView = new ConsoleView(_gameboard);
+        private int row;
+        private int column;
 
         #endregion
 
@@ -96,6 +98,25 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     // Evaluate and update the current game board state
                     //
                     _gameboard.UpdateGameboardState();
+
+
+                    try
+                    {
+ 
+                    }
+                    catch (Controller.PositionChoiceOutOfRangeException ex)
+                    {
+
+                        Console.WriteLine("I think you tried an illegal move!");
+                        Console.WriteLine(ex.Message);
+                    }
+
+                    catch (Controller.PoisitionChoiceAlreadyTakenException ex)
+                    {
+
+                        Console.WriteLine("That move is not allowed!");
+                        Console.WriteLine(ex.Message);
+                    }
                 }
 
                 //
