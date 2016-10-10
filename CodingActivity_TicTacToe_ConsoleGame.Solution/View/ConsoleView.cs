@@ -777,8 +777,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             Console.Write("Enter player X's name: ");
             string playerXName = Console.ReadLine();
-            int playerXScore = roundsPlayed * playerXWins;
-
+            string playerXScore = (roundsPlayed * playerXWins).ToString();
             //
             // generate the record string for the data file using the 
             // StringBuilder class
@@ -789,7 +788,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             Console.Write("Enter the player O's name: ");
             string playerOName = Console.ReadLine();
-            int playerOScore = roundsPlayed * playerOWins;
+            string playerOScore = (roundsPlayed * playerOWins).ToString();
  
             sb.Append(playerOName + Data.DataSettings.Delineator);
             sb.Append(playerOScore + Data.DataSettings.Delineator);
