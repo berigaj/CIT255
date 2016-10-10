@@ -206,6 +206,8 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                     try
                     {
                         WritePlayerHistory(playerHistory);
+                        DisplayContinuePrompt();
+                        DisplayMainMenu();
                     }
                     //
                     // catch the first I/O error
@@ -752,10 +754,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
 
             foreach (var historicScore in historicScores)
             {
-                //
-                // note use of C# 6.0 string interpolation
-                //
-                Console.WriteLine($"{historicScore.PlayerXName} - {historicScore.PlayerXWins}, {historicScore.PlayerOName} - {historicScore.PlayerOWins}");
+                Console.WriteLine($"{historicScore.PlayerXName} {historicScore.PlayerXScore}, {historicScore.PlayerOName} {historicScore.PlayerOScore}");
             }
 
 
@@ -778,11 +777,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             //
             Console.Write("Enter player X's name: ");
             string playerXName = Console.ReadLine();
-            int playerXScore = (roundsPlayed * playerXWins);
-
-            Console.Write("Enter the player O's name: ");
-            string playerOName = Console.ReadLine();
-            int playerOScore = (roundsPlayed * playerOWins);
+            int playerXScore = roundsPlayed * playerXWins;
 
             //
             // generate the record string for the data file using the 
@@ -791,6 +786,11 @@ namespace CodingActivity_TicTacToe_ConsoleGame
             StringBuilder sb = new StringBuilder();
             sb.Append(playerXName + Data.DataSettings.Delineator);
             sb.Append(playerXScore + Data.DataSettings.Delineator);
+
+            Console.Write("Enter the player O's name: ");
+            string playerOName = Console.ReadLine();
+            int playerOScore = roundsPlayed * playerOWins;
+ 
             sb.Append(playerOName + Data.DataSettings.Delineator);
             sb.Append(playerOScore + Data.DataSettings.Delineator);
 
@@ -885,7 +885,7 @@ namespace CodingActivity_TicTacToe_ConsoleGame
                 {
                     string[] fields = historicScore.Split(delineator);
 
-                    historicScores.Add(new Model.PlayerScores() { PlayerXName = fields[0], PlayerXWins = Convert.ToInt32(fields[1]), PlayerOName = fields[2], PlayerOWins = Convert.ToInt32(fields[3]) });
+                    historicScores.Add(new Model.PlayerScores() { PlayerXName = fields[0], PlayerXScore = Convert.ToInt32(fields[1]), PlayerOName = fields[2], PlayerOScore = Convert.ToInt32(fields[3]) });
                 }
             }
 
